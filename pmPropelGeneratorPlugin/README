@@ -1,0 +1,92 @@
+pmPropelGeneratorPlugin
+=======================
+
+The `pmPropelGeneratorPlugin` decouples the admin generator and the forms
+framework by delegating the module behavior to the form. Also, adds to the
+admin module the show action.
+
+Installation
+------------
+
+  * Install the plugin
+
+        [bash]
+        $ ./symfony plugin:install pmPropelGeneratorPlugin
+
+  * Clear the cache
+
+        [bash]
+        $ ./symfony cc
+
+Configuration
+-------------
+
+  * Set the pmPropelGenerator class on generator.yml
+
+        [yml]
+        generator:
+          class: pmPropelGenerator
+          # ...
+
+  * And the basic theme
+
+        [yml]
+        generator:
+          # ...
+          param:
+            # ...
+            theme: basic
+            # ...
+
+  * Configure the module as you configure the standard admin generator except
+    that fields configuration and display are no longer available on new, edit,
+    and show contexts.
+
+Features
+--------
+
+  * fieldset support by adding the `getFieldsets` method in the form
+
+        [php]
+        class Person extends sfFormPropel
+        {
+          // ...
+
+          public function getFieldsets()
+          {
+            return array(
+              'NONE' => array('first_name', 'last_name'),
+              'Address' => array('street', 'number', 'city_id')
+            );
+          }
+
+  * layout support by adding the `getLayout` method in the form
+
+        [php]
+        class Person extends sfFormPropel
+        {
+          // ...
+
+          public function getLayout()
+          {
+            return 'tabbed'; // or 'folded'
+          }
+
+      Also you could create another layouts, creating a partial. I.E., tabbed
+      layout is coded in _form_tabbed.php and _show_form_tabbed.php.
+
+  * fields and display configuration through the form.
+  * the forms are displayed in tables rather than divs (as originally in forms)
+    and thus the partials are less than in the standard generator.
+
+Suggestions
+-----------
+
+Email me suggestions!
+
+TODO
+----
+
+  * Improve stylesheets (specially tabbed layout)
+  * Test
+  * Refactor
