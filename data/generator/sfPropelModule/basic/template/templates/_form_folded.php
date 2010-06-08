@@ -11,22 +11,34 @@
           <h2>[?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "var div = document.getElementById('fold_$fieldset'); if (div.style.display == 'none') { div.style.display = 'block' } else { div.style.display = 'none' }") ?]</h2>
           [?php endif; ?]
           <div id="fold_[?php echo $fieldset ?]"[?php echo 'NONE' != $fieldset ? ' style="display: none;"' : '' ?]>
-            <table>
-              <tbody>
-                [?php foreach ($field_names as $name): ?]
-                  [?php echo $form[$name]->renderRow() ?]
-                [?php endforeach ?]
-              </tbody>
-            </table>
+            [?php if ($form->getWidgetSchema()->getFormFormatter() == 'table'): ?]
+              <table>
+                <tbody>
+                  [?php foreach ($field_names as $name): ?]
+                    [?php echo $form[$name]->renderRow() ?]
+                  [?php endforeach ?]
+                </tbody>
+              </table>
+            [?php else: ?]
+              [?php foreach ($field_names as $name): ?]
+                [?php echo $form[$name]->renderRow() ?]
+              [?php endforeach ?]
+            [?php endif ?]
           </div>
         </fieldset>
       [?php endforeach ?]
     [?php else: ?]
-      <table>
-        <tbody>
+      [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
+        <table>
+          <tbody>
+            [?php echo $form ?]
+          </tbody>
+        </table>
+      [?php else: ?]
+        <fieldset id="sf_fieldset_none">
           [?php echo $form ?]
-        </tbody>
-      </table>
+        </fieldset>
+      [?php endif ?]
     [?php endif ?]
 
     [?php include_partial('<?php echo $this->getModuleName() ?>/form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]

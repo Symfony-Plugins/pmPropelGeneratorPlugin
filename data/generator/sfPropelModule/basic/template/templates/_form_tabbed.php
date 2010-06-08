@@ -15,22 +15,34 @@
       [?php foreach ($form->getFieldsets() as $fieldset => $field_names): ?]
         <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]">
           <div id="tab_[?php echo $fieldset ?]" class="[?php echo ($first ? 'selected' : 'not-selected'); $first = false; ?]">
-            <table>
-              <tbody>
-                [?php foreach ($field_names as $name): ?]
-                  [?php echo $form[$name]->renderRow() ?]
-                [?php endforeach ?]
-              </tbody>
-            </table>
+            [?php if ($form->getWidgetSchema()->getFormFormatter() == 'table'): ?]
+              <table>
+                <tbody>
+                  [?php foreach ($field_names as $name): ?]
+                    [?php echo $form[$name]->renderRow() ?]
+                  [?php endforeach ?]
+                </tbody>
+              </table>
+            [?php else: ?]
+              [?php foreach ($field_names as $name): ?]
+                [?php echo $form[$name]->renderRow() ?]
+              [?php endforeach ?]
+            [?php endif ?]
           </div>
         </fieldset>
       [?php endforeach ?]
     [?php else: ?]
-      <table>
-        <tbody>
+      [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
+        <table>
+          <tbody>
+            [?php echo $form ?]
+          </tbody>
+        </table>
+      [?php else: ?]
+        <fieldset id="sf_fieldset_none">
           [?php echo $form ?]
-        </tbody>
-      </table>
+        </fieldset>
+      [?php endif ?]
     [?php endif ?]
 
     [?php include_partial('<?php echo $this->getModuleName() ?>/form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]

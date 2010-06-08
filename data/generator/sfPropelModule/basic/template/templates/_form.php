@@ -10,21 +10,33 @@
           [?php if ('NONE' != $fieldset): ?]
           <h2>[?php echo __($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>') ?]</h2>
           [?php endif; ?]
-          <table>
-            <tbody>
-              [?php foreach ($field_names as $name): ?]
-                [?php echo $form[$name]->renderRow() ?]
-              [?php endforeach ?]
-            </tbody>
-          </table>
+          [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
+            <table>
+              <tbody>
+                [?php foreach ($field_names as $name): ?]
+                  [?php echo $form[$name]->renderRow() ?]
+                [?php endforeach ?]
+              </tbody>
+            </table>
+          [?php else: ?]
+            [?php foreach ($field_names as $name): ?]
+              [?php echo $form[$name]->renderRow() ?]
+            [?php endforeach ?]
+          [?php endif ?]
         </fieldset>
       [?php endforeach ?]
     [?php else: ?]
-      <table>
-        <tbody>
+      [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
+        <table>
+          <tbody>
+            [?php echo $form ?]
+          </tbody>
+        </table>
+      [?php else: ?]
+        <fieldset id="sf_fieldset_none">
           [?php echo $form ?]
-        </tbody>
-      </table>
+        </fieldset>
+      [?php endif ?]
     [?php endif ?]
 
     [?php include_partial('<?php echo $this->getModuleName() ?>/form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]

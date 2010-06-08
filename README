@@ -78,6 +78,20 @@ Features
   * fields and display configuration through the form.
   * the forms are displayed in tables rather than divs (as originally in forms)
     and thus the partials are less than in the standard generator.
+  * form formatters are used if defined.
+  * object actions can be forbidden if a method is defined in the object. IE:
+
+          [php]
+          class Person extends BasePerson
+          {
+            /**
+             * this method will be used to forbid the edit action in the generator
+             */
+            public function canEdit()
+            {
+              return !$this->getLock();
+            }
+          }
 
 Suggestions
 -----------

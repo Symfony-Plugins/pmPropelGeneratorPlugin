@@ -215,13 +215,9 @@
 #sf_admin_container fieldset
 {
   margin-bottom: 3px;
-  /*
   border: 1px solid #ddd;
-  */
   border-bottom: 0px;
-  /*
   background-color: #fff;
-  */
 }
 
 #sf_admin_container fieldset.collapsed * { display:none; }

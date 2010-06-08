@@ -9,9 +9,39 @@
           [?php if ('NONE' != $fieldset): ?]
           <h2>[?php echo __($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>') ?]</h2>
           [?php endif; ?]
+          [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
+            <table>
+              <tbody>
+                [?php foreach ($field_names as $name): ?]
+                  [?php if (!$form[$name]->isHidden()): ?]
+                    <tr>
+                      <th>
+                        [?php echo $form[$name]->renderLabel() ?]
+                      </th>
+                      <td>
+                        [?php echo $form[$name]->getValue() ?]
+                        [?php echo $form[$name]->renderHelp() ?]
+                      </td>
+                    </tr>
+                  [?php endif ?]
+                [?php endforeach ?]
+              </tbody>
+            </table>
+          [?php else: ?]
+            [?php foreach ($field_names as $name): ?]
+              [?php if (!$form[$name]->isHidden()): ?]
+                [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
+              [?php endif ?]
+            [?php endforeach ?]
+          [?php endif ?]
+        </fieldset>
+      [?php endforeach ?]
+    [?php else: ?]
+      <fieldset id="sf_fieldset_none">
+        [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
           <table>
             <tbody>
-              [?php foreach ($field_names as $name): ?]
+              [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
                 [?php if (!$form[$name]->isHidden()): ?]
                   <tr>
                     <th>
@@ -26,27 +56,13 @@
               [?php endforeach ?]
             </tbody>
           </table>
-        </fieldset>
-      [?php endforeach ?]
-    [?php else: ?]
-      <fieldset id="sf_fieldset_none">
-        <table>
-          <tbody>
-            [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
-              [?php if (!$form[$name]->isHidden()): ?]
-                <tr>
-                  <th>
-                    [?php echo $form[$name]->renderLabel() ?]
-                  </th>
-                  <td>
-                    [?php echo $form[$name]->getValue() ?]
-                    [?php echo $form[$name]->renderHelp() ?]
-                  </td>
-                </tr>
-              [?php endif ?]
-            [?php endforeach ?]
-          </tbody>
-        </table>
+        [?php else: ?]
+          [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
+            [?php if (!$form[$name]->isHidden()): ?]
+              [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
+            [?php endif ?]
+          [?php endforeach ?]
+        [?php endif ?]
       </fieldset>
     [?php endif ?]
 
