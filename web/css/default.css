@@ -327,10 +327,10 @@ span.tab_link_not_selected
 
 span.tab_link_selected
 {
-  background-color: #ccf;
+  background-color: #fff;
 }
 
 span.tab_link_not_selected
 {
-  background-color: #fff;
+  background-color: #ccf;
 }
