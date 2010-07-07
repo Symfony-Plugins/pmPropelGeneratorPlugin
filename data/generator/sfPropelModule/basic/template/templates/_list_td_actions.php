@@ -11,19 +11,22 @@
     <?php echo $this->addCredentialCondition('[?php echo $helper->linkToShow($'.$this->getSingularName().', '.$this->asPhp($params).') ?]', $params) ?>
 
 <?php else: ?>
-  [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($name) ?>')): ?]
-    [?php if ($<?php echo $this->getSingularName() ?>->getRawValue()->can<?php echo sfInflector::camelize($name) ?>()): ?]
+    <?php if (isset($params['show_when'])): ?>
+      <?php $show_when = $params['show_when'] ?>
+    <?php endif ?>
+
+    <?php if (isset($show_when)): ?>
+      [?php if (call_user_func(array($<?php echo $this->getSingularName() ?>, '<?php echo $show_when ?>'))): ?]
+        <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
+          <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
+        </li>
+      [?php endif ?]
+      <?php unset($show_when) ?>
+    <?php else: ?>
       <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
         <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
-
       </li>
-    [?php endif ?]
-  [?php else: ?]
-    <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
-      <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
-
-    </li>
-  [?php endif ?]
+    <?php endif ?>
 <?php endif ?>
 <?php endforeach ?>
   </ul>

@@ -22,9 +22,14 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
   public function linkToEdit($object, $params)
   {
     $obj = $object instanceOf sfOutputEscaperObjectDecorator ? $object->getRawValue() : $object;
-    if (method_exists($obj, 'canEdit'))
+    if (isset($params['show_when']))
     {
-      return $obj->canEdit() ? parent::linkToEdit($object, $params) : '';
+      $show_when = $params['show_when'];
+    }
+
+    if (isset($show_when))
+    {
+      return (call_user_func(array($obj, $show_when))) ? parent::linkToEdit($object, $params) : '';
     }
     else
     {
@@ -35,9 +40,14 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
   public function linkToDelete($object, $params)
   {
     $obj = $object instanceOf sfOutputEscaperObjectDecorator ? $object->getRawValue() : $object;
-    if (method_exists($obj, 'canDelete'))
+    if (isset($params['show_when']))
     {
-      return $obj->canDelete() ? parent::linkToDelete($object, $params) : '';
+      $show_when = $params['show_when'];
+    }
+
+    if (isset($show_when))
+    {
+      return (call_user_func(array($obj, $show_when))) ? parent::linkToDelete($object, $params) : '';
     }
     else
     {

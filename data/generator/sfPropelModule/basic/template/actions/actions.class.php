@@ -24,6 +24,19 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
     $this->dispatcher->notify(new sfEvent($this, 'admin.pre_execute', array('configuration' => $this->configuration)));
 
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
+
+    $route_options = $this->getRoute()->getOptions();
+    if ($route_options['type'] == 'object')
+    {
+      $method = sfInflector::camelize('can_'.$this->getActionName());
+      if (method_exists($this->getRoute()->getObject(), $method) && !call_user_func(array($this->getRoute()->getObject(), $method)))
+      {
+        $verb = strtolower(sfInflector::humanize($this->getActionName()));
+        $verb .= (substr($verb, -1) == 'e') ? 'd' : 'ed';
+        $this->getUser()->setFlash('error', "The item cannot be $verb.");
+        $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
+      }
+    }
   }
 
 <?php include dirname(__FILE__).'/../../parts/actions/indexAction.php' ?>
