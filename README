@@ -93,6 +93,15 @@ Features
             }
           }
 
+  * object actions can be show on a condition. IE:
+
+          [yml]
+          list:
+            object_actions:
+              _edit:
+                show_when: canEdit
+              # ...
+
 Suggestions
 -----------
 

@@ -26,7 +26,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
 
     $route_options = $this->getRoute()->getOptions();
-    if ($route_options['type'] == 'object')
+    if ($route_options['type'] == 'object' && $this->getActionName() != 'new')
     {
       $method = sfInflector::camelize('can_'.$this->getActionName());
       if (method_exists($this->getRoute()->getObject(), $method) && !call_user_func(array($this->getRoute()->getObject(), $method)))
