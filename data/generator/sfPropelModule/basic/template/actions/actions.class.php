@@ -27,7 +27,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 
     $route_options = $this->getRoute()->getOptions();
     $skip = array('new', 'create', 'edit', 'update');
-    if ($route_options['type'] == 'object' && !in_array($this->getActionName(), $skip))
+    if (isset($route_options['type']) && $route_options['type'] == 'object' && !in_array($this->getActionName(), $skip))
     {
       $method = sfInflector::camelize('can_'.$this->getActionName());
       if (method_exists($this->getRoute()->getObject(), $method) && !call_user_func(array($this->getRoute()->getObject(), $method)))
