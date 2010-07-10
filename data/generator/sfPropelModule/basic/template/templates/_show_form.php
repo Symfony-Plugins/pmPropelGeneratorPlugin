@@ -37,7 +37,6 @@
         </fieldset>
       [?php endforeach ?]
     [?php else: ?]
-      <fieldset id="sf_fieldset_none">
         [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
           <table>
             <tbody>
@@ -57,13 +56,14 @@
             </tbody>
           </table>
         [?php else: ?]
-          [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
-            [?php if (!$form[$name]->isHidden()): ?]
-              [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
-            [?php endif ?]
-          [?php endforeach ?]
+          <fieldset id="sf_fieldset_none">
+            [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
+              [?php if (!$form[$name]->isHidden()): ?]
+                [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
+              [?php endif ?]
+            [?php endforeach ?]
+          </fieldset>
         [?php endif ?]
-      </fieldset>
     [?php endif ?]
 
     [?php include_partial('<?php echo $this->getModuleName() ?>/show_form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]
