@@ -5,7 +5,7 @@
   [?php echo form_tag_for($form, '@<?php echo $this->params['route_prefix'] ?>') ?]
     [?php if (method_exists($form, 'getFieldsets')): ?]
       [?php foreach ($form->getFieldsets() as $fieldset => $field_names): ?]
-        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]">
+        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]" style="background-color: #eee; border-width: 0;">
           [?php if ('NONE' != $fieldset): ?]
           <h2>[?php echo __($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>') ?]</h2>
           [?php endif; ?]

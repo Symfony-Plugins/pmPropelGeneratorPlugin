@@ -12,7 +12,7 @@
       [?php endforeach ?]
       [?php $first = true ?]
       [?php foreach ($form->getFieldsets() as $fieldset => $field_names): ?]
-        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]">
+        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]" style="background-color: #eee; border-width: 0;">
           <div id="tab_[?php echo $fieldset ?]" class="[?php echo ($first ? 'selected' : 'not-selected'); $first = false; ?]">
             [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
               <table>
