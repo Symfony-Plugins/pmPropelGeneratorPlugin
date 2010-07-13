@@ -30,7 +30,7 @@
 
   public function getListObjectActions()
   {
-    return <?php echo $this->asPhp(isset($this->config['list']['object_actions']) ? $this->config['list']['object_actions'] : array('_edit' => null, '_delete' => null)) ?>;
+    return <?php echo $this->asPhp(isset($this->config['list']['object_actions']) ? $this->config['list']['object_actions'] : array('_edit' => null, '_delete' => null, '_show' => null)) ?>;
 <?php unset($this->config['list']['object_actions']) ?>
   }
 

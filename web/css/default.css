@@ -181,7 +181,7 @@
   background: url(../images/edit.png) no-repeat 0 0;
 }
 
-#sf_admin_container ul li.sf_admin_action_edit_disabled a
+#sf_admin_container ul li.sf_admin_action_edit_disabled
 {
   background: url(../images/edit_disabled.png) no-repeat 0 0;
   padding-left: 20px;
@@ -191,6 +191,13 @@
 #sf_admin_container ul li.sf_admin_action_show a
 {
   background: url(../images/show.png) no-repeat 0 0;
+}
+
+#sf_admin_container ul li.sf_admin_action_show_disabled
+{
+  background: url(../images/show_disabled.png) no-repeat 0 0;
+  padding-left: 20px;
+  color: #464646;
 }
 
 #sf_admin_container .notice
