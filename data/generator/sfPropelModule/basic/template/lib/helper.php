@@ -27,6 +27,11 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       $show_when = $params['show_when'];
     }
 
+    if (method_exists($object->getRawValue(), 'canDelete') && !$object->canDelete())
+    {
+      return '<li class="sf_admin_action_delete_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+    }
+
     if (isset($show_when))
     {
       return (call_user_func(array($obj, $show_when))) ? parent::linkToEdit($object, $params) : '';
@@ -43,6 +48,11 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
     if (isset($params['show_when']))
     {
       $show_when = $params['show_when'];
+    }
+
+    if (method_exists($object->getRawValue(), 'canDelete') && !$object->canDelete())
+    {
+      return '<li class="sf_admin_action_delete_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
     }
 
     if (isset($show_when))
