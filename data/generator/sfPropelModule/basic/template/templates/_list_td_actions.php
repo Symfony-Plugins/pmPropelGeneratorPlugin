@@ -17,7 +17,8 @@
 
     <?php if (isset($show_when)): ?>
       [?php if (call_user_func(array($<?php echo $this->getSingularName() ?>, '<?php echo $show_when ?>'))): ?]
-        [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($params['action']) ?>') && $<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>()): ?]
+      [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($params['action']) ?>')): ?]
+        [?php if ($<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>()): ?]
           <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
             <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
           </li>
@@ -26,16 +27,26 @@
             <?php echo $params['label'] ?>
           </li>
         [?php endif ?]
-      [?php endif ?]
-      <?php unset($show_when) ?>
-    <?php else: ?>
-      [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($params['action']) ?>') && $<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>()): ?]
+      [?php else: ?]
         <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
           <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
         </li>
+      [?php endif ?]
+      <?php unset($show_when) ?>
+    <?php else: ?>
+      [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($params['action']) ?>')): ?]
+        [?php if ($<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>()): ?]
+          <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
+            <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
+          </li>
+        [?php else: ?]
+          <li class="sf_admin_action_<?php echo $params['class_suffix'] ?> disabled">
+            <?php echo $params['label'] ?>
+          </li>
+        [?php endif ?]
       [?php else: ?]
-        <li class="sf_admin_action_<?php echo $params['class_suffix'] ?> disabled">
-          <?php echo $params['label'] ?>
+        <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
+          <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
         </li>
       [?php endif ?]
     <?php endif ?>
