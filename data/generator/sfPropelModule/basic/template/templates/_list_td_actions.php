@@ -24,7 +24,7 @@
           </li>
         [?php else: ?]
           <li class="sf_admin_action_<?php echo $params['class_suffix'] ?> disabled">
-            [?php echo __($params['label'], array(), 'messages') ?]
+            [?php echo __('<?php echo $params['label'] ?>', array(), 'messages') ?]
           </li>
         [?php endif ?]
       [?php else: ?]
@@ -41,7 +41,7 @@
           </li>
         [?php else: ?]
           <li class="sf_admin_action_<?php echo $params['class_suffix'] ?> disabled">
-            [?php echo __($params['label'], array(), 'messages') ?]
+            [?php echo __('<?php echo $params['label'] ?>', array(), 'messages') ?]
           </li>
         [?php endif ?]
       [?php else: ?]
