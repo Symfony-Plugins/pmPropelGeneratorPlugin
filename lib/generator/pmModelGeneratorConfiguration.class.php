@@ -49,7 +49,7 @@ abstract class pmModelGeneratorConfiguration extends sfModelGeneratorConfigurati
     $this->configuration['show'] = array(
       'fields'  => array(),
       'title'   => $this->getShowTitle(),
-      'actions' => $this->getShowActions() ? $this->getShowActions() : $this->getFormActions(),
+      'actions' => $this->getShowActions() ? $this->getShowActions() : array('_delete' => null, '_list' => null),
     );
 
     foreach ($this->configuration['show']['actions'] as $action => $parameters)

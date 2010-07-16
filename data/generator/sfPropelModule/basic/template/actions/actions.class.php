@@ -26,11 +26,11 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
 
     $route_options = $this->getRoute()->getOptions();
-    $skip = array('new', 'create', 'edit', 'update');
+    $skip = array('new', 'create', 'update');
     if (isset($route_options['type']) && $route_options['type'] == 'object' && !in_array($this->getActionName(), $skip))
     {
       $method = sfInflector::camelize('can_'.$this->getActionName());
-      if (method_exists($this->getRoute()->getObject(), $method) && !call_user_func(array($this->getRoute()->getObject(), $method)))
+      if (method_exists($this->getRoute()->getObject(), $method) && !call_user_func(array($this->getRoute()->getObject(), $method), $this->getUser()))
       {
         $verb = strtolower(sfInflector::humanize($this->getActionName()));
         $verb .= (substr($verb, -1) == 'e') ? 'd' : 'ed';
