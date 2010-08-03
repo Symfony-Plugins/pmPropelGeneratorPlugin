@@ -22,9 +22,9 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       $show_when = $params['show_when'];
     }
 
-    if (method_exists($obj, 'canDelete') && !$obj->canDelete())
+    if (method_exists($obj, 'canEdit') && !$obj->canDelete())
     {
-      return '<li class="sf_admin_action_delete_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+      return '<li class="sf_admin_action_edit_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
     }
 
     if (isset($show_when))
