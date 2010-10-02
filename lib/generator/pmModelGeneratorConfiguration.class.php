@@ -60,5 +60,15 @@ abstract class pmModelGeneratorConfiguration extends sfModelGeneratorConfigurati
     $this->parseVariables('show', 'title');
 
     $this->configuration['credentials']['show'] = array();
+    
+    foreach ($this->configuration['list']['fields'] as $name => $field)
+    {
+      $this->configuration['list']['fields'][$name] = new pmModelGeneratorConfigurationField($field);
+    }
+    
+    foreach ($this->configuration['list']['display'] as $name => $field)
+    {
+      $this->configuration['list']['display'][$name] = new pmModelGeneratorConfigurationField($field);
+    }
   }
 }

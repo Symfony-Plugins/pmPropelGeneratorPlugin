@@ -21,18 +21,11 @@ Installation
 Configuration
 -------------
 
-  * Set the pmPropelGenerator class on generator.yml
+  * Set the pmPropelGenerator class on generator.yml and the basic theme
 
         [yml]
         generator:
           class: pmPropelGenerator
-          # ...
-
-  * And the basic theme
-
-        [yml]
-        generator:
-          # ...
           param:
             # ...
             theme: basic
@@ -40,7 +33,7 @@ Configuration
 
   * Configure the module as you configure the standard admin generator except
     that fields configuration and display are no longer available on new, edit,
-    and show contexts.
+    and show contexts (just in list, for multiple sorting configuration).
 
 Features
 --------
@@ -75,7 +68,8 @@ Features
       Also you could create another layouts, creating a partial. I.E., tabbed
       layout is coded in _form_tabbed.php and _show_form_tabbed.php.
 
-  * fields and display configuration through the form.
+  * fields and display configuration through the form for new, edit and show
+    contexts.
   * the forms are displayed in tables rather than divs (as originally in forms)
     and thus the partials are less than in the standard generator.
   * form formatters are used if defined.
@@ -87,11 +81,12 @@ Features
             /**
              * this method will be used to forbid the edit action in the generator
              */
-            public function canEdit()
+            public function canEdit($sf_user)
             {
               return !$this->getLock();
             }
           }
+    The method takes one argument: the user.
 
   * object actions can be show on a condition. IE:
 
@@ -101,6 +96,24 @@ Features
               _edit:
                 show_when: canEdit
               # ...
+
+  * external column sorting. Suppose that the model Person has a foreign key:
+    document_type_id, so we want to sort the list columns by document_type.
+    In this case need to do this:
+    
+          [yml]
+          list:
+            fields:
+              document_type:
+                peer_column: DocumentTypePeer::NAME
+            peer_method: doSelectJoinDocumentType
+            display: [first_name, last_name, document_type, document_number]
+
+  * Multiple sorting
+
+          [yml]
+          list:
+            multiple_sort: true
 
 Suggestions
 -----------
@@ -113,3 +126,7 @@ TODO
   * Improve stylesheets (specially tabbed layout)
   * Test
   * Refactor
+  * Improve show action (make it like the list context but with layout, etc.)
+  * Export
+  * getNewFieldsets and getEditFieldsets instead of getFieldsets
+  * getNewLayout and getEditLayout instead of getLayout
