@@ -38,42 +38,56 @@ Configuration
 Features
 --------
 
-  * fieldset support by adding the `getFieldsets` method in the form
+  * Per action fieldset support by adding the `get{$action}Fieldsets` method
+    in the form:
 
         [php]
         class Person extends sfFormPropel
         {
           // ...
 
-          public function getFieldsets()
+          public function getNewFieldsets()
           {
             return array(
               'NONE' => array('first_name', 'last_name'),
               'Address' => array('street', 'number', 'city_id')
             );
           }
+          
+          public function getEditFieldsets()
+          {
+            return $this->getNewFieldsets();
+          }
 
-  * layout support by adding the `getLayout` method in the form
+    Only for New and Edit actions (show action is like a list view).
+
+  * Per action layout support by adding the `get{$action}Layout` method in the
+    form:
 
         [php]
         class Person extends sfFormPropel
         {
           // ...
 
-          public function getLayout()
+          public function getNewLayout()
           {
             return 'tabbed'; // or 'folded'
           }
+          
+          public function getEditLayout()
+          {
+            return 'folded'; // or 'tabbed'
+          }
 
-      Also you could create another layouts, creating a partial. I.E., tabbed
-      layout is coded in _form_tabbed.php and _show_form_tabbed.php.
+    Also you can create another layouts, creating a partial. I.E., tabbed
+    layout is coded in _form_tabbed.php and _show_form_tabbed.php.
 
-  * fields and display configuration through the form for new, edit and show
+  * Fields and display configuration through the form for new, edit and show
     contexts.
-  * the forms are displayed in tables rather than divs (as originally in forms)
+  * The forms are displayed in tables rather than divs (as originally in forms)
     and thus the partials are less than in the standard generator.
-  * form formatters are used if defined.
-  * object actions can be forbidden if a method is defined in the object. IE:
+  * Form formatters are used if defined.
+  * Object actions can be forbidden if a method is defined in the object. IE:
 
           [php]
           class Person extends BasePerson
@@ -88,7 +102,7 @@ Features
           }
     The method takes one argument: the user.
 
-  * object actions can be show on a condition. IE:
+  * Object actions can be show on a condition. IE:
 
           [yml]
           list:
@@ -97,7 +111,7 @@ Features
                 show_when: canEdit
               # ...
 
-  * external column sorting. Suppose that the model Person has a foreign key:
+  * External column sorting. Suppose that the model Person has a foreign key:
     document_type_id, so we want to sort the list columns by document_type.
     In this case need to do this:
     
@@ -128,5 +142,3 @@ TODO
   * Refactor
   * Improve show action (make it like the list context but with layout, etc.)
   * Export
-  * getNewFieldsets and getEditFieldsets instead of getFieldsets
-  * getNewLayout and getEditLayout instead of getLayout

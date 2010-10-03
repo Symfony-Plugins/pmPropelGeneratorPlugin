@@ -3,9 +3,9 @@
 
 <div class="sf_admin_form">
   [?php echo form_tag_for($form, '@<?php echo $this->params['route_prefix'] ?>') ?]
-    [?php if (method_exists($form, 'getFieldsets')): ?]
+    [?php if (method_exists($form, "get{$action}Fieldsets")): ?]
       [?php echo $form->renderHiddenFields() ?]
-      [?php foreach ($form->getFieldsets() as $fieldset => $field_names): ?]
+      [?php foreach (call_user_func(array($form, "get{$action}Fieldsets")) as $fieldset => $field_names): ?]
         <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]"[?php echo ($form->getWidgetSchema()->getFormFormatterName() == 'table') ? " style=\"background: none; border: none;\"":""?]>
           [?php if ('NONE' != $fieldset): ?]
           <h2>[?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "var div = document.getElementById('fold_$fieldset'); if (div.style.display == 'none') { div.style.display = 'block' } else { div.style.display = 'none' }") ?]</h2>

@@ -11,7 +11,7 @@
   </div>
 
   <div id="sf_admin_content">
-    [?php include_partial('<?php echo $this->getModuleName() ?>/form'.(method_exists($form, 'getLayout') ? '_'.$form->getLayout() : ''), array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]
+    [?php include_partial('<?php echo $this->getModuleName() ?>/form'.(method_exists($form, 'getNewLayout') ? '_'.$form->getNewLayout() : ''), array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper, 'action' => 'New')) ?]
   </div>
 
   <div id="sf_admin_footer">
