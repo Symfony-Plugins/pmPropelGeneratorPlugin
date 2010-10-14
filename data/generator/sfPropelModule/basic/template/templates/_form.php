@@ -2,7 +2,13 @@
 [?php use_javascripts_for_form($form) ?]
 
 <div class="sf_admin_form">
+  [?php include_partial('<?php echo $this->getModuleName() ?>/form_warning', array('form' => $form, 'action' => $action)) ?]
+
   [?php echo form_tag_for($form, '@<?php echo $this->params['route_prefix'] ?>') ?]
+    [?php if ($configuration->getFormUseTopActions()): ?]
+      [?php include_partial('<?php echo $this->getModuleName() ?>/form_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?]
+    [?php endif ?]
+
     [?php if (method_exists($form, "get{$action}Fieldsets")): ?]
       [?php echo $form->renderHiddenFields() ?]
       [?php foreach (call_user_func(array($form, "get{$action}Fieldsets")) as $fieldset => $field_names): ?]

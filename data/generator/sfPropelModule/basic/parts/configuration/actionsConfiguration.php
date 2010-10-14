@@ -40,6 +40,18 @@
 <?php unset($this->config['list']['object_actions']) ?>
   }
 
+  public function getFormUseTopActions()
+  {
+    return <?php echo $this->asPhp(isset($this->config['form']['use_top_actions']) ? $this->config['form']['use_top_actions'] : false) ?>;
+<?php unset($this->config['form']['use_top_actions']) ?>
+  }
+
+  public function getListUseTopActions()
+  {
+    return <?php echo $this->asPhp(isset($this->config['list']['use_top_actions']) ? $this->config['list']['use_top_actions'] : false) ?>;
+<?php unset($this->config['list']['use_top_actions']) ?>
+  }
+
   public function getListActions()
   {
     return <?php echo $this->asPhp(isset($this->config['list']['actions']) ? $this->config['list']['actions'] : array('_new' => null)) ?>;

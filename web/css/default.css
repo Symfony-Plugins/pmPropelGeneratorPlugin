@@ -200,25 +200,89 @@
   color: #464646;
 }
 
+#sf_admin_container .warning
+{
+  margin: 4px 0;
+  padding: 4px 4px 4px 30px;
+  background: url(../../pmPropelGeneratorPlugin/images/exclamation-diamond.png) no-repeat 8px 3px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffc;
+}
+
+#sf_admin_container .warning_detail
+{
+  background-color: #ffffdc;
+  border-bottom:1px solid #FFFFAA;
+  border-right:1px solid #FFFFAA;
+  border-left:1px solid #DDDDAA;
+  border-top:1px solid #DDDDAA;
+  overflow-x:hidden;
+  overflow-y:auto;
+  height: 100px;
+  padding: 0px 4px 0px 30px;
+  margin: 1px 0;
+}
+
 #sf_admin_container .notice
 {
   margin: 4px 0;
   padding: 4px 4px 4px 30px;
-  background: url(../images/tick.png) no-repeat 10px 4px;
+  background: url(../../pmPropelGeneratorPlugin/images/tick.png) no-repeat 8px 3px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: #ffc;
+}
+
+#sf_admin_container .notice_detail
+{
+  background-color: #ffffef;
+  border-bottom:1px solid #FFFFAA;
+  border-right:1px solid #FFFFAA;
+  border-left:1px solid #DDDDAA;
+  border-top:1px solid #DDDDAA;
+  overflow-x:hidden;
+  overflow-y:auto;
+  height: 100px;
+  padding: 0px 4px 0px 30px;
+  margin: 1px 0;
+}
+
+#sf_admin_container .notice_detail ul li
+{
+  list-style-type: none;
+  list-style-image: url(../../pmPropelGeneratorPlugin/images/tick.png);
 }
 
 #sf_admin_container .error
 {
   margin: 4px 0;
   padding: 4px 4px 4px 30px;
-  background: url(../images/error.png) no-repeat 10px 4px;
+  background: url(../../pmPropelGeneratorPlugin/images/error.png) no-repeat 8px 3px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: #f33;
   color: #fff;
+}
+
+#sf_admin_container .error_detail
+{
+  background-color:#F4F4F4;
+  border-color:#FF3333 #FFAAAA #FFAAAA #FF3333;
+  border-style:solid;
+  border-width:1px;
+  color:#000000;
+  height:100px;
+  margin:1px 0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding:0 4px 0 30px;
+}
+
+#sf_admin_container .error_detail ul li
+{
+  list-style-type: none;
+  list-style-image: url(../../pmPropelGeneratorPlugin/images/error.png);
 }
 
 #sf_admin_container .sf_admin_row_0 td

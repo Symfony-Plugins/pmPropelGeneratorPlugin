@@ -52,6 +52,10 @@ abstract class pmModelGeneratorConfiguration extends sfModelGeneratorConfigurati
       'actions' => $this->getShowActions() ? $this->getShowActions() : array('_delete' => null, '_list' => null),
     );
 
+    $this->configuration['list']['use_top_actions'] = $this->getListUseTopActions();
+    $this->configuration['list']['use_top_pagination'] = $this->getListUseTopPagination();
+    $this->configuration['form']['use_top_actions'] = $this->getFormUseTopActions();
+
     foreach ($this->configuration['show']['actions'] as $action => $parameters)
     {
       $this->configuration['show']['actions'][$action] = $this->fixActionParameters($action, $parameters);

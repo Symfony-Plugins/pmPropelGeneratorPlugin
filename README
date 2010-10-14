@@ -129,11 +129,53 @@ Features
           list:
             multiple_sort: true
 
+  * New flash messages
+
+     'error':                 same as before.
+     'error_params':          this should be an array that will be used as a second parameter of the __() method. Use this for translation.
+     'error_detail':          an array of messages to be displayed below the 'error' message.
+     'error_detail_params':   like 'error_params' but for the 'error_detail' message.
+
+     'notice':                same old story.
+     'notice_params':         this should be an array that will be used as a second parameter of the __() method.
+     'notice_detail'          an array of messages to be displayed below the 'notice' message. Use this for translation.
+     'notice_detail_params':  like 'notice_params' but for the 'notice_detail' message.
+
+     'warning':               same old story.
+     'warning_params':        this should be an array that will be used as a second parameter of the __() method. Use this for translation.
+     'warning_detail':        an array of messages to be displayed below the 'warning' message. Use this for translation.
+     'warning_detail_params': like 'warning_params' but for the 'warning_detail' message.
+
+   * Top actions
+
+      If you want to display the form or list actions above the form or the list, you can set the 'use_top_actions' to true in the 'list' and 'form' section of the generator.yml
+
+      [yml]
+      list:
+        use_top_actions: true
+      form:
+        use_top_actions: true
+
+   * Top pagination
+
+     If you want to display the paginator above the list set the 'use_top_pagination' to true in the 'list' section.
+      [yml]
+      list:
+        use_top_pagination: true
+
+    * New partials
+
+      i) In each <tr> element of the list, there's a partial that can be used to add clases to each row. The outputted code is something like:
+
+          <tr class="sf_admin_row <?php include_partial('sf_admin_row_extra_classes', array('object' => $objet))">
+            ...
+          </tr>
+
   * Show context as list context: display and layout are available. In this case,
     layout acts as the layout in the new and edit context. IE, with tabbed layout,
     the generator will render _show_form_tabbed.php partial.
     Use it like this:
-    
+
           [yml]
           show:
             title: Showing something
@@ -141,7 +183,7 @@ Features
             display:
               First tab: [first_name, last_name]
               Second tab: [_full_id]
-    
+
     As you can see, you can use partials.
 
 Suggestions
