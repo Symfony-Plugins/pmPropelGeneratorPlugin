@@ -7,17 +7,11 @@
     
     [?php if (!isset($display[0])): // just one fieldset ?]
     
-      [?php $first = true ?]
-      [?php foreach ($display as $fieldset => $field_names): ?]
-        <span id="tab_[?php echo $fieldset ?]_link" class="tab_link_[?php echo ($first ? 'selected' : 'not_selected' ); $first = false; ?]">
-          [?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "var div = document.getElementById('tab_$fieldset'); var span = document.getElementById('tab_".$fieldset."_link'); divs = document.getElementsByTagName('div'); for (d in divs) { if (divs[d].className == 'selected') { divs[d].className = 'not-selected'; }}; div.className = 'selected'; spans = document.getElementsByTagName('span'); for (s in spans) { if (spans[s].className == 'tab_link_selected') { spans[s].className = 'tab_link_not_selected'; }}; span.className = 'tab_link_selected';") ?]
-        </span>
-      [?php endforeach ?]
-      [?php $first = true ?]
-    
       [?php foreach ($display as $fieldset => $field_names): ?]
         <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]" style="background-color: #eee; border-width: 0;">
-          <div id="tab_[?php echo $fieldset ?]" class="[?php echo ($first ? 'selected' : 'not-selected'); $first = false; ?]">
+          [?php if ('NONE' != $fieldset): ?]
+          <h2>[?php echo __($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>') ?]</h2>
+          [?php endif; ?]
           [?php if ($form->getWidgetSchema()->getFormFormatterName() == 'table'): ?]
             <table>
               <tbody>
@@ -51,7 +45,6 @@
               [?php endif ?]
             [?php endforeach ?]
           [?php endif ?]
-          </div>
         </fieldset>
       [?php endforeach ?]
     [?php else: ?]

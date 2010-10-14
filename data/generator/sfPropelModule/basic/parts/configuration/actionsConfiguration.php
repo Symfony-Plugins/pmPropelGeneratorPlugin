@@ -21,7 +21,13 @@
     return <?php echo $this->asPhp(isset($this->config['edit']['actions']) ? $this->config['edit']['actions'] : array()) ?>;
 <?php unset($this->config['edit']['actions']) ?>
   }
-
+  
+  public function getShowLayout()
+  {
+    return <?php echo $this->asPhp(isset($this->config['show']['layout']) ? $this->config['show']['layout'] : "default") ?>;
+<?php unset($this->config['show']['layout']) ?>
+  }
+  
   public function getShowActions()
   {
     return <?php echo $this->asPhp(isset($this->config['show']['actions']) ? $this->config['show']['actions'] : array()) ?>;

@@ -32,8 +32,8 @@ Configuration
             # ...
 
   * Configure the module as you configure the standard admin generator except
-    that fields configuration and display are no longer available on new, edit,
-    and show contexts (just in list, for multiple sorting configuration).
+    that fields configuration and display are no longer available on new and edit
+    contexts (just in list, for multiple sorting configuration).
 
 Features
 --------
@@ -128,6 +128,21 @@ Features
           [yml]
           list:
             multiple_sort: true
+
+  * Show context as list context: display and layout are available. In this case,
+    layout acts as the layout in the new and edit context. IE, with tabbed layout,
+    the generator will render _show_form_tabbed.php partial.
+    Use it like this:
+    
+          [yml]
+          show:
+            title: Showing something
+            layout: tabbed
+            display:
+              First tab: [first_name, last_name]
+              Second tab: [_full_id]
+    
+    As you can see, you can use partials.
 
 Suggestions
 -----------

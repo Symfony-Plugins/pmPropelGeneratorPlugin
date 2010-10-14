@@ -45,6 +45,12 @@
 <?php endif; ?>
 <?php unset($this->config['list']['display'], $this->config['list']['hide']) ?>
   }
+  
+  public function getShowDisplay()
+  {
+    return <?php echo $this->asPhp(isset($this->config['show']['display']) ? $this->config['show']['display'] : array()) ?>;
+<?php unset($this->config['show']['display']) ?>
+  }
 
   public function getFieldsDefault()
   {
