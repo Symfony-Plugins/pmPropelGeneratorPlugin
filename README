@@ -194,8 +194,8 @@ Email me suggestions!
 TODO
 ----
 
+  * Improve show when using a decorator
   * Improve stylesheets (specially tabbed layout)
   * Test
   * Refactor
-  * Improve show action (make it like the list context but with layout, etc.)
   * Export

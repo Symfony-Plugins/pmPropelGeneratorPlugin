@@ -18,6 +18,16 @@
                 [?php foreach ($field_names as $name): ?]
                   [?php if (substr($name, 0, 1) == "_"): ?]
                     [?php include_partial("<?php echo $this->getModuleName() ?>/".substr($name, 1), array("<?php echo $this->getSingularName() ?>" => $form->getObject())) ?]
+                  [?php elseif (!$form->getWidgetSchema()->offsetExists($name)): ?]
+                    <tr>
+                      <th>
+                          <label for="[?php echo $name ?]">[?php echo __(sfInflector::humanize($name), array(), '<?php echo $this->getI18NCatalogue() ?>') ?]</label>
+                      </th>
+                      <td>
+                        [?php $method = "get".sfInflector::camelize($name) ?]
+                        [?php echo $form->getObject()->$method() ?]
+                      </td>
+                    </tr>
                   [?php else: ?]
                     [?php if (!$form[$name]->isHidden()): ?]
                       <tr>
@@ -38,6 +48,16 @@
             [?php foreach ($field_names as $name): ?]
               [?php if (substr($name, 0, 1) == "_"): ?]
                 [?php include_partial("<?php echo $this->getModuleName() ?>/".substr($name, 1), array("<?php echo $this->getSingularName() ?>" => $form->getObject())) ?]
+              [?php elseif (!$form->getWidgetSchema()->offsetExists($name)): ?]
+                <tr>
+                  <th>
+                      <label for="[?php echo $name ?]">[?php echo __(sfInflector::humanize($name), array(), '<?php echo $this->getI18NCatalogue() ?>') ?]</label>
+                  </th>
+                  <td>
+                    [?php $method = "get".sfInflector::camelize($name) ?]
+                    [?php echo $form->getObject()->$method() ?]
+                  </td>
+                </tr>
               [?php else: ?]
                 [?php if (!$form[$name]->isHidden()): ?]
                   [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
@@ -54,6 +74,16 @@
               [?php foreach ($configuration->getShowDisplay() as $name): ?]
                 [?php if (substr($name, 0, 1) == "_"): ?]
                   [?php include_partial("<?php echo $this->getModuleName() ?>/".substr($name, 1), array("<?php echo $this->getSingularName() ?>" => $form->getObject())) ?]
+                [?php elseif (!$form->getWidgetSchema()->offsetExists($name)): ?]
+                  <tr>
+                    <th>
+                        <label for="[?php echo $name ?]">[?php echo __(sfInflector::humanize($name), array(), '<?php echo $this->getI18NCatalogue() ?>') ?]</label>
+                    </th>
+                    <td>
+                      [?php $method = "get".sfInflector::camelize($name) ?]
+                      [?php echo $form->getObject()->$method() ?]
+                    </td>
+                  </tr>
                 [?php else: ?]
                   [?php if (!$form[$name]->isHidden()): ?]
                     <tr>
@@ -75,6 +105,16 @@
             [?php foreach ($form->getFormFieldSchema() as $name => $field): ?]
               [?php if (substr($name, 0, 1) == "_"): ?]
                 [?php include_partial("<?php echo $this->getModuleName() ?>/".substr($name, 1), array("<?php echo $this->getSingularName() ?>" => $form->getObject())) ?]
+              [?php elseif (!$form->getWidgetSchema()->offsetExists($name)): ?]
+                <tr>
+                  <th>
+                      <label for="[?php echo $name ?]">[?php echo __(sfInflector::humanize($name), array(), '<?php echo $this->getI18NCatalogue() ?>') ?]</label>
+                  </th>
+                  <td>
+                    [?php $method = "get".sfInflector::camelize($name) ?]
+                    [?php echo $form->getObject()->$method() ?]
+                  </td>
+                </tr>
               [?php else: ?]
                 [?php if (!$form[$name]->isHidden()): ?]
                   [?php echo $form->getWidgetSchema()->getFormFormatter()->formatRow($form[$name]->renderLabel(), $form[$name]->getValue(), array(), $form->getWidgetSchema()->getHelp($name), '') ?]
