@@ -34,7 +34,7 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
     }
     else
     {
-      return parent::linkToNew($object);
+      return parent::linkToNew($params);
     }
   }
   
