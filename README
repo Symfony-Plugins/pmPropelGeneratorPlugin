@@ -101,6 +101,21 @@ Features
             }
           }
     The method takes one argument: the user.
+    
+    new action can be forbidden defining the canNew method on Peer class. IE:
+    
+          [php]
+          class PersonPeer extends BasePersonPeer
+          {
+            /**
+             * this method will be used to forbid the new action in the generator
+             */
+            public function canNew($sf_user)
+            {
+              // do something...
+              return true;
+            }
+          }
 
   * Object actions can be show on a condition. IE:
 
