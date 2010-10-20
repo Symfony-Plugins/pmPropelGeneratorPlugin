@@ -15,6 +15,12 @@
 
         $this->redirect('@<?php echo $this->getUrlForAction('new') ?>');
       }
+      else if ($request->hasParameter('_save_and_list'))
+      {
+        $this->getUser()->setFlash('notice', $notice);
+
+        $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
+      }
       else
       {
         $this->getUser()->setFlash('notice', $notice);
