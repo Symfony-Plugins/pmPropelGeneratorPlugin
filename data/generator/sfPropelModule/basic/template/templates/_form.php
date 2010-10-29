@@ -20,13 +20,13 @@
             <table>
               <tbody>
                 [?php foreach ($field_names as $name): ?]
-                  [?php echo $form[$name]->renderRow() ?]
+                  [?php echo $form[$name]->getWidget() instanceof sfWidgetFormInputHidden ? $form[$name]->render() : $form[$name]->renderRow() ?]
                 [?php endforeach ?]
               </tbody>
             </table>
           [?php else: ?]
             [?php foreach ($field_names as $name): ?]
-              [?php echo $form[$name]->renderRow() ?]
+              [?php echo $form[$name]->getWidget() instanceof sfWidgetFormInputHidden ? $form[$name]->render() : $form[$name]->renderRow() ?]
             [?php endforeach ?]
           [?php endif ?]
         </fieldset>

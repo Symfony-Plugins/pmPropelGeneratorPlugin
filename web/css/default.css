@@ -398,9 +398,12 @@
 {
   padding: 3px;
   color: #333;
-  background-color: #ccf;
-  font-size: 11px;
+  background-color: #e7eef6;
+  font-size: 14px;
   margin: 0;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
 div.selected
@@ -416,8 +419,8 @@ div.not-selected
 span.tab_link_selected,
 span.tab_link_not_selected
 {
-  padding: 3px;
-  font-size: 11px;
+  padding: 2px;
+  font-size: 14px;
   margin-bottom: 3px;
   margin-right: 5px;
   border: 1px solid #ddd;
@@ -431,5 +434,5 @@ span.tab_link_selected
 
 span.tab_link_not_selected
 {
-  background-color: #ccf;
+  background-color: #e7eef6;
 }
