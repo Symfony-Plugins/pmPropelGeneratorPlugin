@@ -112,9 +112,65 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       return '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>';
     }
   }
-  
+
   public function linkToSaveAndList($object, $params)
   {
     return '<li class="sf_admin_action_save_and_list"><input type="submit" value="'.__($params['label'], array(), 'sf_admin').'" name="_save_and_list" /></li>';
+  }
+
+public function linkToExport($params)
+  {
+    $params['action'] = isset($params['action'])? $params['action'] : 'doExportationPages';
+    $params['label'] = 'Export';
+
+    return '<li class="sf_admin_action_export">'.link_to_function(__('Export', array(), 'sf_admin'),
+"
+jQuery('#sf_admin_exportation').show();
+jQuery('#sf_admin_exportation_ajax_indicator').show();
+jQuery('#sf_admin_exportation_form').hide();
+jQuery('#sf_admin_exportation').centerHorizontally();
+
+jQuery('#sf_admin_exportation_form').load('".url_for(sfContext::getInstance()->getModuleName().'/'.$params['action'])."',
+
+  function (response, status, xhr) {
+    if (status != 'error')
+    {
+      jQuery('#sf_admin_exportation').show();
+      jQuery('#sf_admin_exportation_ajax_indicator').hide();
+      jQuery('#sf_admin_exportation_form').show();
+      jQuery('#sf_admin_exportation').centerHorizontally();
+      jQuery('#sf_admin_exportation_resizable_area').ensureVisibleHeight();
+      jQuery(document).scrollTop(jQuery('#sf_admin_exportation').offset().top);
+    }
+  }
+)").'</li>';
+  }
+
+  public function linkToUserExport($params)
+  {
+    $params['action'] = isset($params['action'])? $params['action'] : 'newUserExportation';
+    $params['label'] = 'Custom export';
+
+    return '<li class="sf_admin_action_user_export">'.link_to_function(__('Custom export', array(), 'sf_admin'),
+"
+jQuery('#sf_admin_exportation').show();
+jQuery('#sf_admin_exportation_ajax_indicator').show();
+jQuery('#sf_admin_exportation_form').hide();
+jQuery('#sf_admin_exportation').centerHorizontally();
+
+jQuery('#sf_admin_exportation_form').load('".url_for(sfContext::getInstance()->getModuleName().'/'.$params['action'])."',
+
+  function (response, status, xhr) {
+    if (status != 'error')
+    {
+      jQuery('#sf_admin_exportation').show();
+      jQuery('#sf_admin_exportation_ajax_indicator').hide();
+      jQuery('#sf_admin_exportation_form').show();
+      jQuery('#sf_admin_exportation').centerHorizontally();
+      jQuery('#sf_admin_exportation_resizable_area').ensureVisibleHeight();
+      jQuery(document).scrollTop(jQuery('#sf_admin_exportation').offset().top);
+    }
+  }
+)").'</li>';
   }
 }

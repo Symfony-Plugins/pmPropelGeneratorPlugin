@@ -1,0 +1,143 @@
+The exportation of the list results is by default deactivated. 
+
+If you would like to activate it, you should add something like the following in the generator's yml
+
+STEP 1: configure the exportation basics
+------
+
+generator:
+  class: [...]
+  param: [...]
+    config:
+      actions:  ~
+      list:
+          _export:                             #Makes a report with all the column's defined in the fieldSelection section.
+          _user_export:                        #Allows the user to select which column's to use
+      exportation:
+        enabled:          false                 # If the exportation should be enabled. If false, no exportation code 
+                                                #   will be added to the base (cache) actions.
+        title:            "Exportation Title"   # The title of the report (can be an array of titles)
+        form_title:       "Exportation Title"   # The title when the user exportation is used
+        type:             'xls|csv'             # One of the types described in pmExporterExporterTypes. (xls|csv)
+                                                #   Can be also a user-defined class name that should be a child of 
+                                                #   pmExporterExporter.
+        allowUserTypeSelection: false           # Allows the user to select the type of the report.            
+        fieldSelection:                         # Field selection that will be available in the report. Described later.
+        customRow:
+          xls:
+            amount: "SUM(%column-position%%first-data-row%:%column-position%%last-data-row%)"
+          csv:
+            amount: "..."
+                                                # Valid replacements are:
+                                                  #   %first-data-row%    : primera fila de datos
+                                                  #   %last-data-row%     : última fila de datos
+                                                  #   %first-header-row%  : primera fila de la cabecera
+                                                  #   %last-header-row%   : última fila de la cabecera
+                                                  #   %row-count%         : cantidad de filas en total (con título y cabeceras)
+                                                  #   %first-title-row%   : primera fila del título
+                                                  #   %last-title-row%    : última fila del título.
+                                                  #   %column-position%   : columna del campo.
+        helperClass:      className             # The helper class to be used. By default is moduleNameExporterHelper.
+        helperClassUser:  className             # The helper class to be used when using the selective exportation method.
+                                                #   By default is moduleNameExporterHelperUser.
+        ajaxIndicatorPath:                      # Ajax indicator path to be used.
+        userExportationForm:                    # The form to use when selecting the fields to export
+
+        ---- OPTION 1 -----
+        max_per_page: 100                       # The max number of results for all supported types
+        ---- OPTION 2 -----
+        max_per_page:
+          xls:  2000                            # Max per page for excel documents
+          csv:  50000                           # Max per page for CSV files
+          default: 5000                         # Max per page for other types supported not defined here
+        -------------------
+        pager_class:      sfPropelPager         # The pager class to be used
+
+STEP 2: -fieldSelection- the fields that will be shown (or may be selected by the user) in the report
+------
+
+  The generator only will be able to show the fields that are configured in this section. 
+
+  The generator will take the criteria produced by 'buildExportationCriteria' method (which uses the 'buildCriteria' method) and 
+  will try to fetch the information by using the object's methods specified here.
+  
+  generator:
+    param:
+    config:
+      exportation:
+        [...]
+        fieldSelection
+          uniqueId:                   # Some unique id for the first column
+            label:        "Name"      # The column's header. Will be translated via the 'messages' catalog.
+            method:       "getName"   # The method of the object that will be used to fetch the information
+            decorator:    "text"      # The decorator. Available decorators are: text, integer, pass, date, boolean, many and float.
+                                      #   If you would like to create a new one, you must create a class which must
+                                      #   be a descendant of pmExporterDecoratorBase.
+            truncate-to:   10         # Specific decorator option
+            lowercase:    true        # Specific decorator option
+          [...]
+
+Decorators available and it's options
+---------------------------------------
+  pmExportedDecoratorBase:  (base class)
+    options:
+      'label'
+      'context':        sfContext instance or null
+      'translate'       true|false
+  pmExporterDecoratorObject:
+    options:
+      'method': array(ClassName, Method)
+      'method_parameters': array(param1, param2, param3)
+
+  pmExporterDecoratorText - 'text':
+    options:
+      'truncate-to: INT'        # truncates the text to INT chars.
+      'truncate-append: INT'    # text to add at the end of the truncated string. Example: '...'.
+      'uppercase: true/false'   # uppercases the string
+      'lowercase: true/false'   # lowecases the string
+      'capitalize: true/false'  # capitalizes the string
+
+  pmExporterDecoratorFloat - 'float':
+      'decimals: INT'           # Rounds value to the desired decimals. Default is 2.
+
+      Casts the value to a float.
+
+  pmExporterDecoratorInteger - 'integer':
+
+      Casts the value to an int.
+
+  pmExporterDecoratorDate - 'boolean'
+      'date-format: null'
+
+  pmExporterDecoratorBoolean - 'boolean'
+      'true-representation: Yes'
+      'false-representation: No'
+        
+      Prints trueRepresentation option if value evaluates to true or falseRepresentation option otherwise.
+
+Further customization
+---------------------
+  
+  The generator generates (valgame la redundancia redundada), for each module, a set of classes that allows the programmer to modify the way the exportation takes place.
+
+  The classes are:
+
+    moduleNameDir:
+      actions:
+      lib:
+        exporterHelper.php      (Inside there's a class named moduleNameExporterHelper)
+        exporterHelperUser.php  (Inside there's a class named moduleNameExporterHelperUser)
+        exporterXls.php         (Inside there's a class named moduleNameExporterXls)
+        exporterCsv.php         (Inside there's a class named moduleNameExporterCsv)
+        exporterForm.php        (Inside there's a class named moduleNameExporterForm)
+      templates:
+        createUserExportationSuccess.php
+        newUserExportationSuccess.php
+        _exportation_pages.php
+
+  Also you can change the form that is used to select the report fields by changing the configuration in the generator.yml:
+
+      exportation:
+        [...]
+        userExportationForm:    'moduleNameExporterForm'
+        [...]

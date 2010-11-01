@@ -27,7 +27,6 @@
         return true;
       }
     }
-    
     return in_array($field, BasePeer::getFieldnames($modelClass, BasePeer::TYPE_FIELDNAME));
   }
 
