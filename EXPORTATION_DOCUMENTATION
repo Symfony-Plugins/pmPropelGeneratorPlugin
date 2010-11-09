@@ -11,6 +11,7 @@ generator:
     config:
       actions:  ~
       list:
+        actions:
           _export:                             #Makes a report with all the column's defined in the fieldSelection section.
           _user_export:                        #Allows the user to select which column's to use
       exportation:
@@ -66,7 +67,7 @@ STEP 2: -fieldSelection- the fields that will be shown (or may be selected by th
     config:
       exportation:
         [...]
-        fieldSelection
+        fieldSelection:
           uniqueId:                   # Some unique id for the first column
             label:        "Name"      # The column's header. Will be translated via the 'messages' catalog.
             method:       "getName"   # The method of the object that will be used to fetch the information

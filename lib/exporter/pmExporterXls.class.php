@@ -123,7 +123,7 @@ class pmExporterXls extends pmExporter
     $sheet->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER);
     $sheet->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER);
     $sheet->getPageSetup()->setOrientation(sfConfig::get('app_xls_orientation_landscape')? PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE : PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
-    $sheet->getPageSetup()->setFitToPage(true);
+    //$sheet->getPageSetup()->setFitToPage(true);
     $sheet->getPageMargins()->setTop(sfConfig::get('app_xls_top_margin'));
     $sheet->getPageMargins()->setRight(sfConfig::get('app_xls_right_margin'));
     $sheet->getPageMargins()->setBottom(sfConfig::get('app_xls_bottom_margin'));
