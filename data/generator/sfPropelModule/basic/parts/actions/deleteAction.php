@@ -4,9 +4,16 @@
 
     $this->dispatcher->notify(new sfEvent($this, 'admin.delete_object', array('object' => $this->getRoute()->getObject())));
 
-    $this->getRoute()->getObject()->delete();
+    try
+    {
+      $this->getRoute()->getObject()->delete();
 
-    $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+      $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+    }
+    catch (PropelException $e)
+    {
+      $this->getUser()->setFlash('error', 'The item cannot be deleted.');
+    }
 
     $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
   }
