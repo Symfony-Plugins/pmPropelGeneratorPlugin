@@ -21,6 +21,7 @@
 <?php endif ?>
 
   <div id="sf_admin_content">
+[?php include_partial('<?php echo $this->getModuleName() ?>/pre_list', array('helper' => $helper, 'configuration' => $configuration)) ?]
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>
     <form action="[?php echo url_for('<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'batch')) ?]" method="post">
 <?php endif ?>
