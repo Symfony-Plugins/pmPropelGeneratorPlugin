@@ -333,7 +333,7 @@
   text-align: left;
   width: 8em;
   color: #666;
-  font-weight: normal !important;
+  font-weight: normal;
 }
 
 #sf_admin_container ul label, #sf_admin_container td label

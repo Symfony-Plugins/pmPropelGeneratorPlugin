@@ -35,9 +35,7 @@
           </tbody>
         </table>
       [?php else: ?]
-        <fieldset id="sf_fieldset_none">
-          [?php echo $form ?]
-        </fieldset>
+        [?php echo strtr($form->getWidgetSchema()->getFormFormatter()->getDecoratorFormat(), array("%content%" => (string) $form)) ?]
       [?php endif ?]
     [?php endif ?]
 
