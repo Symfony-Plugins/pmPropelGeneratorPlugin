@@ -24,9 +24,11 @@
                 </tbody>
               </table>
             [?php else: ?]
+              [?php $content = "" ?]
               [?php foreach ($field_names as $name): ?]
-                [?php echo $form[$name]->getWidget() instanceof sfWidgetFormInputHidden ? $form[$name]->render() : $form[$name]->renderRow() ?]
+                [?php $content .= $form[$name]->getWidget() instanceof sfWidgetFormInputHidden ? $form[$name]->render() : $form[$name]->renderRow() ?]
               [?php endforeach ?]
+              [?php echo strtr($form->getWidgetSchema()->getFormFormatter()->getDecoratorFormat(), array("%content%" => $content)) ?]
             [?php endif ?]
           </div>
         </fieldset>
