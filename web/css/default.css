@@ -455,3 +455,14 @@ span.tab_link_not_selected
 {
   background-color: #e7eef6;
 }
+
+label.required
+{
+  font-weight: bold !important;
+  color: #333 !important;
+}
+
+label.required:before
+{
+  content: "* ";
+}
