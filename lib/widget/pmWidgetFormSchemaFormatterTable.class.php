@@ -24,9 +24,12 @@ class pmWidgetFormSchemaFormatterTable extends sfWidgetFormSchemaFormatterTable
   {
     $validatorSchema = $this->form->getValidatorSchema();
     
-    $class = (isset($validatorSchema[$name]) && $validatorSchema[$name]->getOption("required")) ? "required" : "";
+    $class = (isset($validatorSchema[$name]) && $validatorSchema[$name]->getOption("required")) ? "required" : false;
     
-    $attributes["class"] = isset($attributes["class"]) ? $attributes["class"]." $class" : $class;
+    if ($class)
+    {
+      $attributes["class"] = isset($attributes["class"]) ? $attributes["class"]." $class" : $class;
+    }
     
     return parent::generateLabel($name, $attributes);
   }
