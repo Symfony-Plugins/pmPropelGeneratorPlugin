@@ -200,6 +200,16 @@ Features
               Second tab: [_full_id]
 
     As you can see, you can use partials.
+  
+  * A new form formatter, which adds the "required" class to required widgets' label. Usage:
+  
+          [php]
+          public function configure()
+          {
+            $pm_formatter_table = new pmWidgetFormSchemaFormatterTable($this);
+            $this->getWidgetSchema()->addFormFormatter("pm_table", $pm_formatter_table);
+            $this->getWidgetSchema()->setFormFormatterName("pm_table");
+          }
 
 Suggestions
 -----------
