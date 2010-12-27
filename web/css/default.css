@@ -102,10 +102,6 @@
 
 #sf_admin_bar
 {
-  /*
-  float: right;
-  margin-left: 20px;
-  */
 }
 
 .sf_admin_pagination
@@ -298,7 +294,6 @@
 
 #sf_admin_container .sf_admin_row_1 td
 {
-/*  background-color: #eee;*/
 }
 
 #sf_admin_container fieldset h2,
@@ -314,8 +309,6 @@
 #sf_admin_container fieldset
 {
   margin-bottom: 3px;
-  border: 1px solid #ddd;
-  border-bottom: 0px;
   background-color: #fff;
 }
 
@@ -347,6 +340,13 @@
   clear: both;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+#sf_admin_container .sf_admin_form_row:first-child
+{
+  border-top: 1px solid #ddd;
 }
 
 #sf_admin_container .sf_admin_form_row .content
@@ -380,11 +380,24 @@
   margin-bottom: 1em;
 }
 
+.sf_admin_filter div
+{
+  margin-bottom: 0;
+}
+
+.sf_admin_filter .sf_admin_form_row
+{
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
 .sf_admin_filter table,
 .sf_admin_list table,
 .sf_admin_form table
 {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .sf_admin_filter table th,
@@ -404,6 +417,12 @@
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
+}
+
+.sf_admin_filter fieldset
+{
+  margin: 0 !important;
+  border: 0px !important;
 }
 
 div.selected

@@ -5,12 +5,13 @@
   [?php echo form_tag_for($form, '@<?php echo $this->params['route_prefix'] ?>') ?]
     [?php if (method_exists($form, "get{$action}Fieldsets")): ?]
       [?php echo $form->renderHiddenFields() ?]
+      [?php $first = true ?]
       [?php foreach (call_user_func(array($form, "get{$action}Fieldsets")) as $fieldset => $field_names): ?]
-        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]"[?php echo ($form->getWidgetSchema()->getFormFormatterName() == 'table') ? " style=\"background: none; border: none;\"":""?]>
+        <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]">
           [?php if ('NONE' != $fieldset): ?]
-          <h2>[?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "var div = document.getElementById('fold_$fieldset'); if (div.style.display == 'none') { div.style.display = 'block' } else { div.style.display = 'none' }") ?]</h2>
+            <h2>[?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "toggleFold('$fieldset')") ?]</h2>
           [?php endif; ?]
-          <div id="fold_[?php echo $fieldset ?]"[?php echo 'NONE' != $fieldset ? ' style="display: none;"' : '' ?]>
+          <div id="fold_[?php echo $fieldset ?]"[?php echo 'NONE' != $fieldset && !$first ? ' style="display: none"' : '' ?]>
             [?php $content = "" ?]
             [?php foreach ($field_names as $name): ?]
               [?php $content .= $form[$name]->getWidget() instanceof sfWidgetFormInputHidden ? $form[$name]->render() : $form[$name]->renderRow() ?]
@@ -18,6 +19,7 @@
             [?php echo strtr($form->getWidgetSchema()->getFormFormatter()->getDecoratorFormat(), array("%content%" => $content)) ?]
           </div>
         </fieldset>
+        [?php $first = false ?]
       [?php endforeach ?]
     [?php else: ?]
       [?php echo strtr($form->getWidgetSchema()->getFormFormatter()->getDecoratorFormat(), array("%content%" => (string) $form)) ?]

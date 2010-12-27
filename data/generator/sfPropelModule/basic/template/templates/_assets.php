@@ -5,4 +5,5 @@
 [?php use_stylesheet('/pmPropelGeneratorPlugin/css/default.css', 'first') ?]
 [?php use_stylesheet('/pmPropelGeneratorPlugin/css/exportation.css', 'first') ?]
 <?php endif; ?>
+[?php use_javascript('/pmPropelGeneratorPlugin/js/pm_propel_generator.js', 'last') ?]
 [?php use_javascript('/pmPropelGeneratorPlugin/js/exportation.js', 'last') ?]
