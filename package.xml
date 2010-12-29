@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>pmPropelGeneratorPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>New admin generator</summary>
+ <description>New admin generator</description>
+ <lead>
+  <name>Patricio Mac Adden</name>
+  <user>pmacadden</user>
+  <email>pmacadden@cespi.unlp.edu.ar</email>
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Matías A. Torres</name>
+  <user>mtorres</user>
+  <email>torresmat@gmail.com</email>
+  <active>yes</active>
+ </developer>
+ <date>2010-12-29</date>
+ <version>
+   <release>1.0.0</release>
+   <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+   <dir name="/">
+     <file role="data" name="EXPORTATION_DOCUMENTATION" />
+     <file role="data" name="LICENSE" />
+     <file role="data" name="README" />
+     
+     <dir name="data">
+       <dir name="generator">
+          <dir name="sfPropelModule">
+            <dir name="basic">
+              <dir name="parts">
+                <dir name="actions">
+                  <file role="data" name="batchAction.php" />
+                  <file role="data" name="createAction.php" />
+                  <file role="data" name="deleteAction.php" />
+                  <file role="data" name="editAction.php" />
+                  <file role="data" name="exporterAction.php" />
+                  <file role="data" name="exporterPaginationAction.php" />
+                  <file role="data" name="filterAction.php" />
+                  <file role="data" name="filtersAction.php" />
+                  <file role="data" name="indexAction.php" />
+                  <file role="data" name="newAction.php" />
+                  <file role="data" name="paginationAction.php" />
+                  <file role="data" name="processFormAction.php" />
+                  <file role="data" name="showAction.php" />
+                  <file role="data" name="sortingAction.php" />
+                  <file role="data" name="updateAction.php" />
+                </dir>
+                <dir name="configuration">
+                  <file role="data" name="actionsConfiguration.php" />
+                  <file role="data" name="exporterConfiguration.php" />
+                  <file role="data" name="exporterPaginationConfiguration.php" />
+                  <file role="data" name="fieldsConfiguration.php" />
+                  <file role="data" name="paginationConfiguration.php" />
+                  <file role="data" name="sortingConfiguration.php" />
+                </dir>
+                <file role="data" name="configuration.php" />
+              </dir>
+              <dir name="skeleton">
+                <dir name="actions">
+                  <file role="data" name="actions.class.php" />
+                </dir>
+                <dir name="config">
+                  <file role="data" name="generator.yml" />
+                </dir>
+                <dir name="lib">
+                  <file role="data" name="configuration.php" />
+                  <file role="data" name="exporterCsv.php" />
+                  <file role="data" name="exporterForm.php" />
+                  <file role="data" name="exporterHelper.php" />
+                  <file role="data" name="exporterHelperUser.php" />
+                  <file role="data" name="exporterXls.php" />
+                  <file role="data" name="helper.php" />
+                </dir>
+                <dir name="templates">
+                </dir>
+              </dir>
+              <dir name="template">
+                <dir name="actions">
+                  <file role="data" name="actions.class.php" />
+                </dir>
+                <dir name="lib">
+                  <file role="data" name="exporterCsv.php" />
+                  <file role="data" name="exporterForm.php" />
+                  <file role="data" name="exporterHelper.php" />
+                  <file role="data" name="exporterHelperUser.php" />
+                  <file role="data" name="exporterXls.php" />
+                  <file role="data" name="helper.php" />
+                </dir>
+                <dir name="templates">
+                  <file role="data" name="_assets.php" />
+                  <file role="data" name="_exportation.php" />
+                  <file role="data" name="_exportation_form_field.php" />
+                  <file role="data" name="_exportation_pages.php" />
+                  <file role="data" name="_filters.php" />
+                  <file role="data" name="_flashes.php" />
+                  <file role="data" name="_form.php" />
+                  <file role="data" name="_form_actions.php" />
+                  <file role="data" name="_form_folded.php" />
+                  <file role="data" name="_form_footer.php" />
+                  <file role="data" name="_form_header.php" />
+                  <file role="data" name="_form_tabbed.php" />
+                  <file role="data" name="_form_warning.php" />
+                  <file role="data" name="_list.php" />
+                  <file role="data" name="_list_actions.php" />
+                  <file role="data" name="_list_batch_actions.php" />
+                  <file role="data" name="_list_field_boolean.php" />
+                  <file role="data" name="_list_footer.php" />
+                  <file role="data" name="_list_header.php" />
+                  <file role="data" name="_list_pagination.php" />
+                  <file role="data" name="_list_td_actions.php" />
+                  <file role="data" name="_list_td_batch_actions.php" />
+                  <file role="data" name="_list_td_stacked.php" />
+                  <file role="data" name="_list_td_tabular.php" />
+                  <file role="data" name="_list_th_stacked.php" />
+                  <file role="data" name="_list_th_tabular.php" />
+                  <file role="data" name="_pagination.php" />
+                  <file role="data" name="_pre_list.php" />
+                  <file role="data" name="_sf_admin_row_extra_classes.php" />
+                  <file role="data" name="_show_form_actions.php" />
+                  <file role="data" name="_show_form_default.php" />
+                  <file role="data" name="_show_form_field.php" />
+                  <file role="data" name="_show_form_folded.php" />
+                  <file role="data" name="_show_form_tabbed.php" />
+                  <file role="data" name="createUserExportationSuccess.php" />
+                  <file role="data" name="editSuccess.php" />
+                  <file role="data" name="indexSuccess.php" />
+                  <file role="data" name="newSuccess.php" />
+                  <file role="data" name="newUserExportationSuccess.php" />
+                  <file role="data" name="showSuccess.php" />
+                </dir>
+              </dir>
+            </dir>
+          </dir>
+        </dir>
+      </dir>
+
+     <dir name="i18n">
+       <file role="data" name="messages.es_AR.xml" />
+       <file role="data" name="sf_admin.es_AR.xml" />
+     </dir>
+
+     <dir name="lib">
+       <dir name="exporter">
+          <dir name="decorators">
+            <file role="data" name="pmExporterDecoratorBase.class.php" />
+            <file role="data" name="pmExporterDecoratorBoolean.class.php" />
+            <file role="data" name="pmExporterDecoratorDate.class.php" />
+            <file role="data" name="pmExporterDecoratorFactory.class.php" />
+            <file role="data" name="pmExporterDecoratorFloat.class.php" />
+            <file role="data" name="pmExporterDecoratorInteger.class.php" />
+            <file role="data" name="pmExporterDecoratorMany.class.php" />
+            <file role="data" name="pmExporterDecoratorObject.class.php" />
+            <file role="data" name="pmExporterDecoratorPass.class.php" />
+            <file role="data" name="pmExporterDecoratorText.class.php" />
+          </dir>
+         <file role="data" name="pmExporter.class.php" />
+         <file role="data" name="pmExporterCsv.class.php" />
+         <file role="data" name="pmExporterForm.class.php" />
+         <file role="data" name="pmExporterHelper.class.php" />
+         <file role="data" name="pmExporterHelperCustom.class.php" />
+         <file role="data" name="pmExporterHelperUser.class.php" />
+         <file role="data" name="pmExporterTypes.class.php" />
+         <file role="data" name="pmExporterXls.class.php" />
+         <file role="data" name="pmGeneratorConfiguration.class.php" />
+       </dir>
+       <dir name="generator">
+         <file role="data" name="pmModelGeneratorConfiguration.class.php" />
+         <file role="data" name="pmModelGeneratorConfigurationField.class.php" />
+         <file role="data" name="pmPropelGenerator.php" />
+       </dir>
+       <dir name="helper">
+         <file role="data" name="pmPropelGeneratorFormHelper.class.php" />
+       </dir>
+       <dir name="widget">
+         <file role="data" name="pmWidgetFormSchemaFormatterTable.class.php" />
+       </div>
+     </dir>
+
+     <dir name="web">
+       <dir name="css">
+         <file role="data" name="default.css" />
+         <file role="data" name="exportation.css" />
+         <file role="data" name="global.css" />
+       </dir>
+       <dir name="images">
+         <dir name="icons">
+           <dir name="16x16">
+             <file role="data" name="spreadsheet.png" />
+           </dir>
+         </dir>
+         <file role="data" name="ajax-loader.gif" />
+         <file role="data" name="asc.png" />
+         <file role="data" name="default.png" />
+         <file role="data" name="default_disabled.png" />
+         <file role="data" name="delete.png" />
+         <file role="data" name="delete_disabled.png" />
+         <file role="data" name="desc.png" />
+         <file role="data" name="edit.png" />
+         <file role="data" name="edit_disabled.png" />
+         <file role="data" name="error.png" />
+         <file role="data" name="exclamation-diamond.png" />
+         <file role="data" name="first.png" />
+         <file role="data" name="last.png" />
+         <file role="data" name="list.png" />
+         <file role="data" name="new.png" />
+         <file role="data" name="new_disabled.png" />
+         <file role="data" name="next.png" />
+         <file role="data" name="previous.png" />
+         <file role="data" name="show.png" />
+         <file role="data" name="show_disabled.png" />
+         <file role="data" name="tick.png" />
+       </dir>
+       <dir name="js">
+         <file role="data" name="exportation.js" />
+         <file role="data" name="pm_propel_generator.js" />
+       </dir>
+     </dir>
+     </dir>
+   </dir>
+ </contents>
+
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.4</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.3.0</min>
+    <max>2.0.0</max>
+    <exclude>2.0.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+
+ <phprelease>
+ </phprelease>
+
+ <changelog>
+   <release>
+     <version>
+       <release>1.0.0</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2010-08-25</date>
+     <license>MIT</license>
+     <notes>
+       * pmacadden: First release
+     </notes>
+   </release>
+ </changelog>
+</package>
