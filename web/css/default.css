@@ -448,12 +448,17 @@ span.tab_link_not_selected
 
 span.tab_link_selected
 {
-  background-color: #fff;
+  background-color: #e7eef6;
 }
 
 span.tab_link_not_selected
 {
-  background-color: #e7eef6;
+  background-color: #fff;
+}
+
+span.tab_link_not_selected a
+{
+  color: #a6a6a6 !important;
 }
 
 label.required

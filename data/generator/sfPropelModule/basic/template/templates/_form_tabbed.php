@@ -11,6 +11,7 @@
           [?php echo link_to_function(__($fieldset, array(), '<?php echo $this->getI18nCatalogue() ?>'), "selectTab('$fieldset')") ?]
         </span>
       [?php endforeach ?]
+      
       [?php $first = true ?]
       [?php foreach (call_user_func(array($form, "get{$action}Fieldsets")) as $fieldset => $field_names): ?]
         <fieldset id="sf_fieldset_[?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?]">

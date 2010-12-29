@@ -48,7 +48,19 @@
   
   public function getShowDisplay()
   {
-    return <?php echo $this->asPhp(isset($this->config['show']['display']) ? $this->config['show']['display'] : array()) ?>;
+<?php if (isset($this->config['show']['display'])): ?>
+    $display = <?php echo $this->asPhp($this->config['show']['display']) ?>;
+    if (isset($display[0]))
+    {
+      $new_display = array("NONE" => $display);
+      $display = $new_display;
+    }
+    
+    return $display;
+<?php else: ?>
+    return array("NONE" => <?php echo $this->asPhp($this->getAllFieldNames(false)) ?>);
+<?php endif; ?>
+
 <?php unset($this->config['show']['display']) ?>
   }
 
