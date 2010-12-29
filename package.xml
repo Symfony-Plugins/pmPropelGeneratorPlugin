@@ -183,7 +183,7 @@
        </dir>
        <dir name="widget">
          <file role="data" name="pmWidgetFormSchemaFormatterTable.class.php" />
-       </div>
+       </dir>
      </dir>
 
      <dir name="web">
