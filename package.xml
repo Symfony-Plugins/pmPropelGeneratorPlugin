@@ -16,6 +16,12 @@
   <email>torresmat@gmail.com</email>
   <active>yes</active>
  </developer>
+ <developer>
+  <name>Álvaro F. Lara</name>
+  <user>alvarola</user>
+  <email>alvarola@gmail.com</email>
+  <active>yes</active>
+ </developer>
  <date>2010-12-29</date>
  <version>
    <release>1.0.0</release>
