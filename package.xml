@@ -258,6 +258,23 @@
  <changelog>
    <release>
      <version>
+       <release>1.0.1</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2010-12-29</date>
+     <license>MIT</license>
+     <notes>
+       * pmacadden: updated README
+       * pmacadden: added alvarola as plugin developer (in package.xml file)
+     </notes>
+   </release>
+   <release>
+     <version>
        <release>1.0.0</release>
        <api>1.0.0</api>
      </version>
@@ -266,7 +283,7 @@
        <api>stable</api>
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
-     <date>2010-08-25</date>
+     <date>2010-12-29</date>
      <license>MIT</license>
      <notes>
        * pmacadden: First release
