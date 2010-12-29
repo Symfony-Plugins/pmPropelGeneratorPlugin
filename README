@@ -17,6 +17,11 @@ Installation
 
         [bash]
         $ ./symfony cc
+  
+  * From now on you can generate-admin with the basic theme:
+  
+        [bash]
+        $ ./symfony propel:generate-admin <app> ClassName --theme=basic
 
 Configuration
 -------------
@@ -210,15 +215,10 @@ Features
             $this->getWidgetSchema()->addFormFormatter("pm_table", $pm_formatter_table);
             $this->getWidgetSchema()->setFormFormatterName("pm_table");
           }
+  
+  * Export to CSV or EXCEL (requires sfPhpExcelPlugin to work). See the `EXPORTATION_DOCUMENTATION` file for complete documentation.
 
 Suggestions
 -----------
 
 Email me suggestions!
-
-TODO
-----
-
-  * Improve show when using a decorator
-  * Test
-  * Refactor A LOT!

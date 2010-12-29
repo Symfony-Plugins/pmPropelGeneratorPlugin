@@ -2,8 +2,18 @@ The exportation of the list results is by default deactivated.
 
 If you would like to activate it, you should add something like the following in the generator's yml
 
-STEP 1: configure the exportation basics
+STEP 1
 ------
+
+  Re-generate the module to create the extra (necessary) files if you didn't create the module with the basic theme:
+
+        [bash]
+        $ ./symfony propel:generate-admin <app> <Class> --theme=basic
+
+STEP 2
+------
+
+  Configure the exportation basics.
 
 generator:
   class: [...]
@@ -54,7 +64,7 @@ generator:
         -------------------
         pager_class:      sfPropelPager         # The pager class to be used
 
-STEP 2: -fieldSelection- the fields that will be shown (or may be selected by the user) in the report
+STEP 3: -fieldSelection- the fields that will be shown (or may be selected by the user) in the report
 ------
 
   The generator only will be able to show the fields that are configured in this section. 
