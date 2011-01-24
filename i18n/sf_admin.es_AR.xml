@@ -73,9 +73,21 @@
       <target>Hubo un error al tratar de exportar la página seleccionada.</target>
     </trans-unit>
     <trans-unit>
+      <source>Show/Hide filters</source>
+      <target>Mostrar/Ocultar filtros</target>
+    </trans-unit>
+    <trans-unit>
+      <source>The item was updated successfully.</source>
+      <target>El objeto fue actualizado exitosamente.</target>
+    </trans-unit>
+    <trans-unit>
+      <source>The item was created successfully.</source>
+      <target>El objeto fue creado exitosamente.</target>
+    </trans-unit>
+    <trans-unit>
       <source></source>
       <target></target>
     </trans-unit>
-</body>
+  </body>
  </file>
 </xliff>

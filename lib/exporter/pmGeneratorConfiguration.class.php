@@ -2,6 +2,18 @@
 
 class pmGeneratorConfiguration
 {
+  static public function getExportationFitToPage()
+  {
+    $opts = self::getExportationConfiguration();
+    return isset($opts['fit_to_page'])? $opts['fit_to_page'] : true;
+  }
+
+  static public function getExportationCenterHorizontally()
+  {
+    $opts = self::getExportationConfiguration();
+    return isset($opts['center_horizontally'])? $opts['center_horizontally'] : true;
+  }
+
   static public function getExportationCommonTitle()
   {
     $opts = self::getExportationConfiguration();

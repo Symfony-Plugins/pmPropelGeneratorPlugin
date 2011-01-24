@@ -2,7 +2,7 @@
 
 class pmPropelGeneratorFormHelper
 {
-  static public function getRenderizedFields($form, $action)
+  static public function getRenderizedFields($form, $action = '')
   {
     $renderized = array();
 
@@ -24,7 +24,7 @@ class pmPropelGeneratorFormHelper
     return null;
   }
 
-  static public function getUnrenderizedFields($form, $action)
+  static public function getUnrenderizedFields($form, $action = '')
   {
     $fields = self::getFieldNames($form);
     $renderized = self::getRenderizedFields($form, $action);

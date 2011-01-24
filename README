@@ -23,6 +23,8 @@ Installation
         [bash]
         $ ./symfony propel:generate-admin <app> ClassName --theme=basic
 
+  * The plugin needs jQuery & the jQuery.noConflict(). These two are provided within the 'web/js' path of the plugin. First load jQuery, then the 'no-conflict' script and after this two, if needed, load prototype.
+
 Configuration
 -------------
 
@@ -187,7 +189,7 @@ Features
 
   * New partials
 
-    * In each <tr> element of the list, there's a partial that can be used to add clases to each row. The outputted code is something like:
+    ** In each <tr> element of the list, there's a partial that can be used to add clases to each row. The outputted code is something like:
     
             [php]
             <tr class="sf_admin_row <?php include_partial('sf_admin_row_extra_classes', array('object' => $object))">
@@ -208,9 +210,9 @@ Features
             Second tab: [_full_id]
 
     As you can see, you can use partials.
-  
+
   * A new form formatter, which adds the "required" class to required widgets' label. Usage:
-  
+
         [php]
         public function configure()
         {
@@ -218,8 +220,49 @@ Features
           $this->getWidgetSchema()->addFormFormatter("pm_table", $pm_formatter_table);
           $this->getWidgetSchema()->setFormFormatterName("pm_table");
         }
-  
+
   * Export to CSV or EXCEL (requires sfPhpExcelPlugin to work). See the `EXPORTATION_DOCUMENTATION` file for complete documentation.
+
+  * customEdit:
+
+      If you're trying to modify an object with a customized form (which is not the same that is used in the 'edit' action) this plugin
+      provides a customEdit template that use the following variables:
+
+        * dbObject : The propel object that is beign updated.
+        * form     : The form to edit the dbObject.
+        * custom_form_action : The route or 'module/action' to send the form information.
+        * custom_title       : The title of the page.
+
+
+     The 'simpleProcessForm' and 'getObjectFromRequest' methods in the moduleAction class may came in handy when using this.
+
+     Here's a little example of how to use this:
+
+{{{
+
+        public function executeEditInternalAreas(sfWebRequest $request)
+        {
+          $this->Document             = $this->getRoute()->getObject();
+          $this->form                 = $this->configuration->getEditInternalAreasForm($this->Document);
+          $this->dbObject             = $this->form->getObject();
+          $this->custom_form_action   = 'document/updateInternalAreas';
+          $this->custom_title         = 'Edit internal areas of the document';
+
+          $this->setTemplate('customEdit');
+        }
+
+        public function executeUpdateInternalAreas(sfWebRequest $request)
+        {
+          $this->form                 = $this->configuration->getEditInternalAreasForm($this->getObjectFromRequest('document'));
+          $this->dbObject             = $this->form->getObject();
+          $this->custom_form_action   = 'document/updateInternalAreas';
+          $this->custom_title         = 'Edit internal areas of the document';
+          $this->simpleProcessForm($request, $this->form, '@document');
+
+          $this->setTemplate('customEdit');
+        }
+
+}}}
 
 Suggestions
 -----------

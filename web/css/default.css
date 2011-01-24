@@ -119,7 +119,6 @@
 #sf_admin_container ul.sf_admin_td_actions li
 {
   list-style-type: none;
-  display: inline;
   margin-right: 10px;
   font-size: 90%;
 }
@@ -322,11 +321,11 @@
 {
   display: block;
   padding: 0 1em 3px 0;
-  float: left;
   text-align: left;
   width: 8em;
   color: #666;
   font-weight: normal;
+  white-space: normal;
 }
 
 #sf_admin_container ul label, #sf_admin_container td label
@@ -377,7 +376,10 @@
 
 .sf_admin_filter
 {
+  width: 40em;
   margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sf_admin_filter div
@@ -403,7 +405,7 @@
 .sf_admin_filter table th,
 .sf_admin_form table th
 {
-  width: 10%;
+  width: 9em;
 }
 
 #sf_admin_container fieldset h2,
