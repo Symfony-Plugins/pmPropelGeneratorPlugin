@@ -60,7 +60,7 @@ Features
               'Address' => array('street', 'number', 'city_id')
             );
           }
-          
+
           public function getEditFieldsets()
           {
             return $this->getNewFieldsets();
@@ -80,7 +80,7 @@ Features
           {
             return 'tabbed'; // or 'folded'
           }
-          
+
           public function getEditLayout()
           {
             return 'folded'; // or 'tabbed'
@@ -107,11 +107,11 @@ Features
             return !$this->getLock();
           }
         }
-    
+
     The method takes one argument: the user.
-    
+
     new action can be forbidden defining the canNew method on Peer class. IE:
-    
+
         [php]
         class PersonPeer extends BasePersonPeer
         {
@@ -137,7 +137,7 @@ Features
   * External column sorting. Suppose that the model Person has a foreign key:
     document_type_id, so we want to sort the list columns by document_type.
     In this case need to do this:
-    
+
         [yml]
         list:
           fields:
@@ -182,7 +182,7 @@ Features
   * Top pagination
 
     If you want to display the paginator above the list set the 'use_top_pagination' to true in the 'list' section.
-    
+
         [yml]
         list:
           use_top_pagination: true
@@ -190,7 +190,7 @@ Features
   * New partials
 
     ** In each <tr> element of the list, there's a partial that can be used to add clases to each row. The outputted code is something like:
-    
+
             [php]
             <tr class="sf_admin_row <?php include_partial('sf_admin_row_extra_classes', array('object' => $object))">
               ...
@@ -263,6 +263,9 @@ Features
         }
 
 }}}
+
+  * List title:
+    * If a variable named 'title' is set when evaluating the 'indexSuccess' php code, then it's contents are used as a title.
 
 Suggestions
 -----------

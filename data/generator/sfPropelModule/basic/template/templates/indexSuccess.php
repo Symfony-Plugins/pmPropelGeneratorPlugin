@@ -6,7 +6,7 @@
     [?php include_partial('exportation', array('configuration' => $configuration)) ?]
   <?php endif ?>
 
-  <h1>[?php echo <?php echo $this->getI18NString('list.title') ?> ?]</h1>
+  <h1>[?php echo isset($title)? $title : <?php echo $this->getI18NString('list.title') ?> ?]</h1>
 
   [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
 
