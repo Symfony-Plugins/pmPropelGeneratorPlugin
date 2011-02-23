@@ -36,7 +36,7 @@
       <?php unset($show_when) ?>
     <?php else: ?>
       [?php if (method_exists($<?php echo $this->getSingularName() ?>->getRawValue(), 'can<?php echo sfInflector::camelize($params['action']) ?>')): ?]
-        [?php if ($<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>()): ?]
+        [?php if ($<?php echo $this->getSingularName() ?>->can<?php echo sfInflector::camelize($params['action']) ?>($sf_user)): ?]
           <li class="sf_admin_action_<?php echo $params['class_suffix'] ?>">
             <?php echo $this->addCredentialCondition($this->getLinkToAction($name, $params, true), $params) ?>
           </li>
