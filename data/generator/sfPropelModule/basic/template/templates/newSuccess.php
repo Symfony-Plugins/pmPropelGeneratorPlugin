@@ -2,7 +2,16 @@
 [?php include_partial('<?php echo $this->getModuleName() ?>/assets') ?]
 
 <div id="sf_admin_container">
+
+  <?php if(pmGeneratorConfiguration::getUseSlotForTitles()): ?>
+    [?php slot('<?php echo pmGeneratorConfiguration::getUseSlotForTitles()?>') ?]
+  <?php endif; ?>
+
   <h1>[?php echo <?php echo $this->getI18NString('new.title') ?> ?]</h1>
+
+  <?php if(pmGeneratorConfiguration::getUseSlotForTitles()): ?>
+    [?php end_slot() ?]
+  <?php endif; ?>
 
   [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
 

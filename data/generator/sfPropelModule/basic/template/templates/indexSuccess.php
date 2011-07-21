@@ -6,7 +6,15 @@
     [?php include_partial('exportation', array('configuration' => $configuration)) ?]
   <?php endif ?>
 
+  <?php if(pmGeneratorConfiguration::getUseSlotForTitles()): ?>
+    [?php slot('<?php echo pmGeneratorConfiguration::getUseSlotForTitles()?>') ?]
+  <?php endif; ?>
+
   <h1>[?php echo isset($title)? $title : <?php echo $this->getI18NString('list.title') ?> ?]</h1>
+
+  <?php if(pmGeneratorConfiguration::getUseSlotForTitles()): ?>
+    [?php end_slot() ?]
+  <?php endif; ?>
 
   [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
 

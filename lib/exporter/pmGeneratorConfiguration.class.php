@@ -48,6 +48,11 @@ class pmGeneratorConfiguration
     return isset($opts['decimals'])? $opts['decimals'] : false;
   }
 
+  static public function getUseSlotForTitles()
+  {
+    return sfConfig::get('app_pm_generator_plugin_use_slot_for_titles', false);
+  }
+
 }
 
 ?>
