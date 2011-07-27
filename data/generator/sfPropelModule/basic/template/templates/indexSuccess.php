@@ -10,7 +10,7 @@
     [?php slot('<?php echo pmGeneratorConfiguration::getUseSlotForTitles()?>') ?]
   <?php endif; ?>
 
-  <h1>[?php echo isset($title)? $title : <?php echo $this->getI18NString('list.title') ?> ?]</h1>
+  <h1>[?php echo isset($title)? __($title, isset($title_parameters)? $title_parameters: array(), 'messages') : <?php echo $this->getI18NString('list.title') ?> ?]</h1>
 
   <?php if(pmGeneratorConfiguration::getUseSlotForTitles()): ?>
     [?php end_slot() ?]

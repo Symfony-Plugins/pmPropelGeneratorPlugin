@@ -266,6 +266,7 @@ Features
 
   * List title:
     * If a variable named 'title' is set when evaluating the 'indexSuccess' php code, then it's contents are used as a title.
+    * If a variable named 'title_parameters' is set when evaluating the 'indexSuccess' php code, then it's contents are used as the parameters for I18N in the 'title'.
 
 Suggestions
 -----------
