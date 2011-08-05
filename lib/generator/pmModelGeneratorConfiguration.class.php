@@ -42,6 +42,28 @@ abstract class pmModelGeneratorConfiguration extends sfModelGeneratorConfigurati
     return array();
   }
 
+  public function getFilterFormOptions()
+  {
+    if ($this->areFiltersDynamic())
+    {
+      return array('form' => $this->getStaticFilterForm(), 'url' => $this->getDynamicFormFilterUrl());
+    }
+
+    return array();
+  }
+
+  public function getStaticFilterForm($filters = array())
+  {
+    $class = $this->getStaticFilterFormClass();
+
+    return new $class($filters, $this->getStaticFilterFormOptions());
+  }
+
+  public function getStaticFilterFormOptions()
+  {
+    return array();
+  }
+
   public function compile()
   {
     parent::compile();
