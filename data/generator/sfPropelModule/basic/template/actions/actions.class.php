@@ -78,6 +78,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 <?php include dirname(__FILE__).'/../../parts/actions/sortingAction.php' ?>
 
 <?php include dirname(__FILE__).'/../../parts/actions/customAction.php' ?>
+<?php include dirname(__FILE__).'/../../parts/actions/dynamicFieldAction.php' ?>
 
 <?php if ($this->configuration->isExportationEnabled()): ?>
 <?php include dirname(__FILE__).'/../../parts/actions/exporterAction.php' ?>

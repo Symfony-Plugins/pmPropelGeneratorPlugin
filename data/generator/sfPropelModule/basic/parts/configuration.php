@@ -45,14 +45,51 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorConfigu
   }
 
   /**
+   * Gets the static filter form class name
+   *
+   * @return string The static filter form class name associated with this generator
+   */
+  public function getStaticFilterFormClass()
+  {
+    return '<?php echo isset($this->config['filter']['class']) && !in_array($this->config['filter']['class'], array(null, true, false), true) ? $this->config['filter']['class'] : $this->getModelClass().'FormFilter' ?>';
+<?php unset($this->config['filter']['class']) ?>
+  }
+
+  /**
+   * Answers whether filters are dynamic.
+   *
+   * @return bool True if the filters are dynamic.
+   */
+  public function areFiltersDynamic()
+  {
+    return <?php echo isset($this->config['filter']['dynamic']) && true === $this->config['filter']['dynamic'] ? 'true' : 'false' ?>;
+<?php unset($this->config['filter']['dynamic']) ?>
+  }
+
+  /**
    * Gets the filter form class name
    *
    * @return string The filter form class name associated with this generator
    */
   public function getFilterFormClass()
   {
-    return '<?php echo isset($this->config['filter']['class']) && !in_array($this->config['filter']['class'], array(null, true, false), true) ? $this->config['filter']['class'] : $this->getModelClass().'FormFilter' ?>';
-<?php unset($this->config['filter']['class']) ?>
+    if ($this->areFiltersDynamic())
+    {
+      return '<?php echo isset($this->config['filter']['dynamic_class']) ? $this->config['filter']['dynamic_class'] : 'ncDynamicFormFilter' ?>';
+<?php unset($this->config['filter']['dynamic_class']) ?>
+    }
+
+    return $this->getStaticFilterFormClass();
+  }
+
+  /**
+   * Gets the URL for the dynamic form filter fields information.
+   *
+   * @return string The URL
+   */
+  public function getDynamicFormFilterUrl()
+  {
+    return sfContext::getInstance()->getRouting()->generate('<?php echo $this->getModuleName() ?>_collection', array('action' => 'dynamicField'));
   }
 
 <?php include dirname(__FILE__).'/configuration/paginationConfiguration.php' ?>
