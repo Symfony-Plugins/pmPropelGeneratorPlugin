@@ -80,7 +80,7 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
 
     if (isset($show_when))
     {
-      return (call_user_func(array($obj, $show_when))) ? parent::linkToDelete($object, $params) : '';
+      return (call_user_func(array($obj, $show_when), $sf_user)) ? parent::linkToDelete($object, $params) : '';
     }
     else
     {
