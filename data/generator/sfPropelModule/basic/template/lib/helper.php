@@ -30,7 +30,7 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
     
     if (isset($show_when))
     {
-      return (call_user_func(array('<?php echo $this->getModelClass() ?>Peer', $show_when))) ? parent::linkToNew($params) : '';
+      return (call_user_func(array('<?php echo $this->getModelClass() ?>Peer', $show_when), $sf_user)) ? parent::linkToNew($params) : '';
     }
     else
     {
@@ -55,7 +55,7 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
 
     if (isset($show_when))
     {
-      return (call_user_func(array($obj, $show_when))) ? parent::linkToEdit($object, $params) : '';
+      return (call_user_func(array($obj, $show_when), $sf_user)) ? parent::linkToEdit($object, $params) : '';
     }
     else
     {
