@@ -11,9 +11,11 @@
 
     if (!$action = $request->getParameter('batch_action'))
     {
-      $this->getUser()->setFlash('error', 'You must select an action to execute on the selected items.');
-
-      $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
+      if (!$action = $request->getParameter('batch_action_top'))
+      {
+        $this->getUser()->setFlash('error', 'You must select an action to execute on the selected items.');
+        $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
+      }
     }
 
     if (!method_exists($this, $method = 'execute'.ucfirst($action)))

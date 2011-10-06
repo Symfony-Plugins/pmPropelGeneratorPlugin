@@ -36,7 +36,7 @@
 
 [?php if ($configuration->getListUseTopActions()): ?]
     <ul class="sf_admin_actions">
-      [?php include_partial('<?php echo $this->getModuleName() ?>/list_batch_actions', array('helper' => $helper)) ?]
+      [?php include_partial('<?php echo $this->getModuleName() ?>/list_batch_actions', array('helper' => $helper, 'where' => 'top')) ?]
       [?php include_partial('<?php echo $this->getModuleName() ?>/list_actions', array('helper' => $helper, 'configuration' => $configuration)) ?]
     </ul>
 [?php endif ?]
