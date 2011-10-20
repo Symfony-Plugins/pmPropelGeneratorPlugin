@@ -18,23 +18,33 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
   {
     $sf_user = sfContext::getInstance()->getUser();
     
-    if (isset($params['show_when']))
-    {
-      $show_when = $params['show_when'];
-    }
-    
-    if (method_exists('<?php echo $this->getModelClass() ?>Peer', 'canNew') && !<?php echo $this->getModelClass() ?>Peer::canNew($sf_user))
-    {
-      return '<li class="sf_admin_action_new_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
-    }
-    
     if (isset($show_when))
     {
-      return (call_user_func(array('<?php echo $this->getModelClass() ?>Peer', $show_when), $sf_user)) ? parent::linkToNew($params) : '';
+      if (call_user_func(array($obj, $show_when), $sf_user))
+      {
+        if (method_exists('<?php echo $this->getModelClass() ?>Peer', 'canNew') && !<?php echo $this->getModelClass() ?>Peer::canNew($sf_user))
+        {
+          return parent::linkToNew($params);
+        }
+      }
     }
     else
     {
-      return parent::linkToNew($params);
+      if (method_exists('<?php echo $this->getModelClass() ?>Peer', 'canNew'))
+      {
+        if (<?php echo $this->getModelClass() ?>Peer::canNew($sf_user))
+        {
+          return parent::linkToNew($params);
+        }
+        else
+        {
+          return '<li class="sf_admin_action_new_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+        }
+      }
+      else
+      {
+        return parent::linkToNew($params);
+      }
     }
   }
   
@@ -48,18 +58,27 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       $show_when = $params['show_when'];
     }
 
-    if (method_exists($obj, 'canEdit') && !$obj->canEdit($sf_user))
-    {
-      return '<li class="sf_admin_action_edit_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
-    }
-
     if (isset($show_when))
     {
-      return (call_user_func(array($obj, $show_when), $sf_user)) ? parent::linkToEdit($object, $params) : '';
+      if (call_user_func(array($obj, $show_when), $sf_user))
+      {
+        if (method_exists($obj, 'canEdit') && $obj->canEdit($sf_user))
+        {
+          return parent::linkToEdit($object, $params);
+        }
+      }
     }
     else
     {
-      return parent::linkToEdit($object, $params);
+      if (method_exists($obj, 'canEdit'))
+      {
+        
+        return $obj->canEdit($sf_user) ? parent::linkToEdit($object, $params) : '<li class="sf_admin_action_edit_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+      }
+      else
+      {
+        return parent::linkToEdit($object, $params);
+      }
     }
   }
 
@@ -73,18 +92,26 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       $show_when = $params['show_when'];
     }
 
-    if (method_exists($obj, 'canDelete') && !$obj->canDelete($sf_user))
-    {
-      return '<li class="sf_admin_action_delete_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
-    }
-
     if (isset($show_when))
     {
-      return (call_user_func(array($obj, $show_when), $sf_user)) ? parent::linkToDelete($object, $params) : '';
+      if (call_user_func(array($obj, $show_when), $sf_user))
+      {
+        if (method_exists($obj, 'canDelete') && $obj->canDelete($sf_user))
+        {
+          return parent::linkToDelete($object, $params);
+        }
+      }
     }
     else
     {
-      return parent::linkToDelete($object, $params);
+      if (method_exists($obj, 'canDelete'))
+      {
+        return $obj->canDelete($sf_user) ? parent::linkToDelete($object, $params) : '<li class="sf_admin_action_delete_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+      }
+      else
+      {
+        return parent::linkToDelete($object, $params);
+      }
     }
   }
 
@@ -98,18 +125,33 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
       $show_when = $params['show_when'];
     }
 
-    if (method_exists($obj, 'canShow') && !$obj->canShow($sf_user))
-    {
-      return '<li class="sf_admin_action_show_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
-    }
-
     if (isset($show_when))
     {
-      return (call_user_func(array($obj, $show_when))) ? '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>' : '';
+      if (call_user_func(array($obj, $show_when), $sf_user))
+      {
+        if (method_exists($obj, 'canShow') && $obj->canShow($sf_user))
+        {
+          return '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>';
+        }
+      }
     }
     else
     {
-      return '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>';
+      if (method_exists($obj, 'canShow'))
+      {
+        if ($obj->canShow($sf_user))
+        {
+          return '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>';
+        }
+        else
+        {
+          return '<li class="sf_admin_action_show_disabled">'.__($params['label'], array(), 'sf_admin').'</li>';
+        }
+      }
+      else
+      {
+        return '<li class="sf_admin_action_show">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('show'), $object).'</li>';
+      }
     }
   }
 
