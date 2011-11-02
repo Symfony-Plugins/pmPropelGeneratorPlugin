@@ -39,14 +39,14 @@
     {
       return $this->getMultipleSort();
     }
-    if (null !== $sort = $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.sort', null, 'admin_module'))
+    if (null !== $sort = $this->getUser()->getAttribute($this->getSortAttribute(), null, 'admin_module'))
     {
       return $sort;
     }
 
     $this->setSort($this->configuration->getDefaultSort());
 
-    return $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.sort', null, 'admin_module');
+    return $this->getUser()->getAttribute($this->getSortAttribute(), null, 'admin_module');
   }
 
   protected function setSort(array $sort)
@@ -62,19 +62,19 @@
         $sort[1] = 'asc';
       }
 
-      $this->getUser()->setAttribute('<?php echo $this->getModuleName() ?>.sort', $sort, 'admin_module');
+      $this->getUser()->setAttribute($this->getSortAttribute(), $sort, 'admin_module');
     }
   }
   
   protected function getMultipleSort()
   {
-    if (null !== $sort = $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.sort', null, 'admin_module'))
+    if (null !== $sort = $this->getUser()->getAttribute($this->getSortAttribute(), null, 'admin_module'))
     {
       return $sort;
     }
-    $this->getUser()->setAttribute('<?php echo $this->getModuleName() ?>.sort', $this->configuration->getDefaultMultipleSort(), 'admin_module');
+    $this->getUser()->setAttribute($this->getSortAttribute(), $this->configuration->getDefaultMultipleSort(), 'admin_module');
     
-    return $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.sort', null, 'admin_module');
+    return $this->getUser()->getAttribute($this->getSortAttribute(), null, 'admin_module');
   }
 
   protected function setMultipleSort(array $sort)
@@ -83,7 +83,7 @@
     {
       $sort[1] = 'asc';
     }
-    $multiple_sort = $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.sort', null, 'admin_module');
+    $multiple_sort = $this->getUser()->getAttribute($this->getSortAttribute(), null, 'admin_module');
     $multiple_sort = is_null($multiple_sort)?$this->configuration->getDefaultMultipleSort():$multiple_sort;
     if (strcasecmp($sort[1],'clean') == 0)
     {
@@ -93,10 +93,15 @@
     {
       $multiple_sort [$sort[0]]=$sort;
     }
-    $this->getUser()->setAttribute('<?php echo $this->getModuleName() ?>.sort', $multiple_sort , 'admin_module');
+    $this->getUser()->setAttribute($this->getSortAttribute(), $multiple_sort , 'admin_module');
   }
 
   protected function isValidSortColumn($column)
   {
     return $this->configuration->isValidSortColumn($column, '<?php echo $this->getModelClass() ?>');
+  }
+  
+  protected function getSortAttribute()
+  {
+    return '<?php echo $this->getModuleName() ?>.sort';
   }
