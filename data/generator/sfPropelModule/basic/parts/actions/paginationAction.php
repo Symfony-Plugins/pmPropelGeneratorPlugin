@@ -12,12 +12,17 @@
 
   protected function setPage($page)
   {
-    $this->getUser()->setAttribute('<?php echo $this->getModuleName() ?>.page', $page, 'admin_module');
+    $this->getUser()->setAttribute($this->getPageAttribute(), $page, 'admin_module');
   }
 
   protected function getPage()
   {
-    return $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.page', 1, 'admin_module');
+    return $this->getUser()->getAttribute($this->getPageAttribute(), 1, 'admin_module');
+  }
+  
+  protected function getPageAttribute()
+  {
+    return '<?php echo $this->getModuleName() ?>.page';
   }
 
   protected function buildCriteria()
