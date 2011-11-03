@@ -5,7 +5,7 @@
     <table cellspacing="0">
       <thead>
         <?php if ($this->configuration->getValue('list.use_top_pagination')): ?>
-        [?php include_partial('<?php echo $this->getModuleName() ?>/list_pagination', array('pager' => $pager)) ?]
+        [?php include_partial('<?php echo $this->getModuleName() ?>/list_pagination', array('pager' => $pager, 'configuration' => $configuration)) ?]
         <?php endif ?>
         <tr>
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>
@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tfoot>
-        [?php include_partial('<?php echo $this->getModuleName() ?>/list_pagination', array('pager' => $pager)) ?]
+        [?php include_partial('<?php echo $this->getModuleName() ?>/list_pagination', array('pager' => $pager, 'configuration' => $configuration)) ?]
       </tfoot>
       <tbody>
         [?php foreach ($pager->getResults() as $i => $<?php echo $this->getSingularName() ?>): $odd = fmod(++$i, 2) ? 'odd' : 'even' ?]

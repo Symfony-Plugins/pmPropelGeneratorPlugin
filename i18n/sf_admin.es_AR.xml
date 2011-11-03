@@ -85,8 +85,8 @@
       <target>El objeto fue creado exitosamente.</target>
     </trans-unit>
     <trans-unit>
-      <source></source>
-      <target></target>
+      <source>Items per page</source>
+      <target>Cantidad de elementos por página</target>
     </trans-unit>
   </body>
  </file>

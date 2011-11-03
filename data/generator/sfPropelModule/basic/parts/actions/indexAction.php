@@ -11,6 +11,10 @@
     {
       $this->setPage($request->getParameter('page'));
     }
+    if ($request->getParameter('max_per_page'))
+    {
+      $this->setMaxPerPage($request->getParameter('max_per_page'));
+    }
 
     $this->pager = $this->getPager();
     $this->sort = $this->getSort();
